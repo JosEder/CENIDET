@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "872314953591",
+    "project_id": "cenidet-33efd",
+    "storage_bucket": "cenidet-33efd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872314953591:android:a49703a6d9472509cc8b72",
+        "android_client_info": {
+          "package_name": "com.example.cenidet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872314953591-f2t4qdfvofdmfdt2kclnk6kn8r9eko5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cenidet",
+            "certificate_hash": "0990e3d147ce2d7f9ecf84c5bc2e112bdfca9933"
+          }
+        },
+        {
+          "client_id": "872314953591-gg9rkcundu0852dbap0v0qlihtn1d75l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAykOfaYZBYgcpL3_Rd1a7P9Slm1oEhhFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872314953591-gg9rkcundu0852dbap0v0qlihtn1d75l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

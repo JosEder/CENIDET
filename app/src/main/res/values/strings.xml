@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">CENIDET</string>
+    <string name="registrate_ahora">REGISTRATE AHORA</string>
+    <string name="registrate">REGISTRATE</string>
+    <string name="todo">TODO</string>
+    <string name="correo_electronico">Correo Electronico</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="confirmar_contrase_a">Confirmar Contraseña</string>
+    <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="registrarse">REGISTRARSE</string>
+    <string name="no_tienes_cuenta">No tienes cuenta?</string>
+    <string name="registrate_aqui">REGISTRATE AQUI!!!</string>
+    <string name="iniciar_sesion">INICIAR SESION</string>
+    <string name="completa">COMPLETA INFORMACION</string>
+    <string name="perfil">DE PERFIL</string>
+    <string name="confirmar">CONFIRMAR</string>
+    <string name="transicion_picture">transicionnamepicture</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+    <string-array name="tipocuenta">
+        <item>Estudiante</item>
+        <item>Docente</item>
+        <item>Administrativo</item>
+    </string-array>
+
+
+    //Aqui se puede modificar para todos las listas
+    <string-array name="departamentos">
+        <item>Dep. de Ingenieria Electronica</item>
+        <item>Dep. de Ingenieria Mecanica</item>
+        <item>Dep. de Ciencias Computacionales</item>
+        <item>Dep. de Dess. Academico e Idiomas</item>
+        <item>Dep. de Org. y Seguimiento de Estudios</item>
+        <item>Oficina de Centro de Com. y Telec.</item>
+        <item>Centro de Informacion</item>
+        <item>Dep. de Plan., Prog. y Presupestacion</item>
+        <item>Dep. de Gest. Tecn. y Vinculacion</item>
+        <item>Dep. de Comunicacion y Eventos</item>
+        <item>Dep. de Servicios Escolares</item>
+        <item>Dep. de Recursos Materiales y Servicios</item>
+        <item>Dep. de Recursos Humanos</item>
+        <item>Dep. de Recursos Financieros</item>
+    </string-array>
+</resources>
