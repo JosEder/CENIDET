@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.adapters.SliderAdapter;
@@ -103,6 +104,11 @@ public class PostDetailActivity extends AppCompatActivity {
                 String titulo = mtextViewTitle.getText().toString();
                 intent.putExtra("variable_Titulo", titulo);
                 startActivity(intent);
+
+                //Agraga una variable al Bundle para el departamento
+                String departamento = mtextViewNameCategory.getText().toString();
+                intent.putExtra("departamento", departamento);
+                //Toast.makeText(getApplicationContext(),departamento,Toast.LENGTH_LONG).show();
             }
         });
 

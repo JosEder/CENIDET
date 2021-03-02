@@ -33,6 +33,7 @@ public class ChatActivity extends AppCompatActivity {
     String matricula = "";
     String recuperarTitulo = "";
     String recuperarTituloCorreo = "";
+    String recuperarDepartamento = "";
 
     UsersProvider mUsersProvider;
     AuthProvider mAuthProvider;
@@ -56,6 +57,12 @@ public class ChatActivity extends AppCompatActivity {
         recuperarTituloCorreo ="";
         recuperarTitulo = getIntent().getStringExtra("variable_Titulo");
         recuperarTituloCorreo = getIntent().getStringExtra("variable_TipoCorreo");
+
+        //Recupera el departamento al que se enviara el correo
+        recuperarDepartamento = getIntent().getStringExtra("departamento");
+        Toast.makeText(getApplicationContext(),recuperarDepartamento + " Holi",Toast.LENGTH_LONG).show();
+        mSpinner4.setSelection(5);
+
 
         ;if(recuperarTituloCorreo != null){
             mEditTextSubject.setText("");
