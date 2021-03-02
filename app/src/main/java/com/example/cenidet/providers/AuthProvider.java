@@ -12,7 +12,7 @@ public class AuthProvider {
     public FirebaseAuth mAuth;
 
     public AuthProvider(){
-
+        // Instancia de firebase
         mAuth=FirebaseAuth.getInstance();
     }
 
