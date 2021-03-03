@@ -38,6 +38,13 @@ public class ChatActivity extends AppCompatActivity {
     UsersProvider mUsersProvider;
     AuthProvider mAuthProvider;
 
+    String [] departamentos = { "Dep. de Ingenieria Electronica",    "Dep. de Ingenieria Mecanica",             "Dep. de Ciencias Computacionales",
+                                "Dep. de Dess. Academico e Idiomas", "Dep. de Org. y Seguimiento de Estudios",  "Oficina de Centro de Com. y Telec.",
+                                "Centro de Informacion",             "Dep. de Plan., Prog. y Presupestacion",   "Dep. de Gest. Tecn. y Vinculacion",
+                                "Dep. de Comunicacion y Eventos",    "Dep. de Servicios Escolares",             "Dep. de Recursos Materiales y Servicios",
+                                "Dep. de Recursos Humanos",           "Dep. de Recursos Financieros"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +63,21 @@ public class ChatActivity extends AppCompatActivity {
 
         recuperarTituloCorreo ="";
         recuperarTitulo = getIntent().getStringExtra("variable_Titulo");
-        recuperarTituloCorreo = getIntent().getStringExtra("variable_TipoCorreo");
 
         //Recupera el departamento al que se enviara el correo
         recuperarDepartamento = getIntent().getStringExtra("departamento");
-        Toast.makeText(getApplicationContext(),recuperarDepartamento + " Holi",Toast.LENGTH_LONG).show();
-        mSpinner4.setSelection(5);
+        //Codigo para la seleccion automatica del departamento que publico la noticia
+        int posicion = 0;
+        for(int i=0; i<departamentos.length; i++){
+            if(recuperarDepartamento.equalsIgnoreCase(departamentos[i])){
+                posicion = i;
+                //Toast.makeText(getApplicationContext(),recuperarDepartamento + "\nPosición" + posicion,Toast.LENGTH_LONG).show();
+            }
+        }
+        mSpinner4.setSelection(posicion);
 
+
+        recuperarTituloCorreo = getIntent().getStringExtra("variable_TipoCorreo");
 
         ;if(recuperarTituloCorreo != null){
             mEditTextSubject.setText("");

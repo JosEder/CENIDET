@@ -95,6 +95,7 @@ public class ChatFragment extends Fragment {
                 String tituloCorreo = mTextViewNuevo.getText().toString();
                 intent.putExtra("variable_TipoCorreo", tituloCorreo);
                 //Toast.makeText(getContext(), "Prueba "+tituloCorreo, Toast.LENGTH_LONG).show();
+
                 startActivity(intent);
             }
         });

@@ -64,6 +64,7 @@ public class PostDetailActivity extends AppCompatActivity {
     Toolbar mToolBar;
 
     String mIdUser = "";
+    String departamento = "";
 
     ListenerRegistration mListener;
 
@@ -103,12 +104,16 @@ public class PostDetailActivity extends AppCompatActivity {
                 intent.putExtra("idUser", mIdUser);
                 String titulo = mtextViewTitle.getText().toString();
                 intent.putExtra("variable_Titulo", titulo);
-                startActivity(intent);
 
                 //Agraga una variable al Bundle para el departamento
-                String departamento = mtextViewNameCategory.getText().toString();
+                departamento = mtextViewNameCategory.getText().toString();
                 intent.putExtra("departamento", departamento);
                 //Toast.makeText(getApplicationContext(),departamento,Toast.LENGTH_LONG).show();
+
+
+                startActivity(intent);
+
+
             }
         });
 
