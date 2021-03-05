@@ -1,5 +1,5 @@
 package com.example.cenidet.activities;
-
+//Comentario
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
