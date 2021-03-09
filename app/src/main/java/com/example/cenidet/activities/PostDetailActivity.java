@@ -68,6 +68,13 @@ public class PostDetailActivity extends AppCompatActivity {
 
     ListenerRegistration mListener;
 
+    String [] departamentos = { "Dep. de Ingenieria Electronica",    "Dep. de Ingenieria Mecanica",             "Dep. de Ciencias Computacionales",
+            "Dep. de Dess. Academico e Idiomas", "Dep. de Org. y Seguimiento de Estudios",  "Oficina de Centro de Com. y Telec.",
+            "Centro de Informacion",             "Dep. de Plan., Prog. y Presupestacion",   "Dep. de Gest. Tecn. y Vinculacion",
+            "Dep. de Comunicacion y Eventos",    "Dep. de Servicios Escolares",             "Dep. de Recursos Materiales y Servicios",
+            "Dep. de Recursos Humanos",           "Dep. de Recursos Financieros"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,11 +112,21 @@ public class PostDetailActivity extends AppCompatActivity {
                 String titulo = mtextViewTitle.getText().toString();
                 intent.putExtra("variable_Titulo", titulo);
 
-                //Agraga una variable al Bundle para el departamento
+                //Agrega una variable al Bundle para el departamento
                 departamento = mtextViewNameCategory.getText().toString();
-                intent.putExtra("departamento", departamento);
+
                 //Toast.makeText(getApplicationContext(),departamento,Toast.LENGTH_LONG).show();
 
+                //Codigo para la seleccion automatica del departamento que publico la noticia
+                int posicion = 0;
+
+                for(int i=0; i<departamentos.length; i++){
+                    if(departamento.equalsIgnoreCase(departamentos[i])){
+                    posicion = i;
+                    //Toast.makeText(getApplicationContext(),departamento + "\nPosición" + posicion,Toast.LENGTH_LONG).show();
+                    }
+                }
+                intent.putExtra("departamento", posicion);
 
                 startActivity(intent);
 

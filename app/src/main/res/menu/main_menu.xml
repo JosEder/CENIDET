@@ -5,5 +5,4 @@
         android:title="Cerrar sesion"
         app:showAsAction="never"/>
 
-
 </menu>

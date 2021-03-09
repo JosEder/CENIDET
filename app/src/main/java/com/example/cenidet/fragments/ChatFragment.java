@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.activities.ChatActivity;
@@ -80,25 +81,29 @@ public class ChatFragment extends Fragment {
         mTextViewSolicitud = mView.findViewById(R.id.textViewSolicitud);
         mTextViewNuevo = mView.findViewById(R.id.textViewNuevo);
 
-        mCardViewEmailAdminitrador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ChatActivity.class);
-                startActivity(intent);
-            }
-        });
+        try{
+            mCardViewEmailAdminitrador.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    startActivity(intent);
+                }
+            });
 
-        mCardViewEmailNuevo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ChatActivity.class);
-                String tituloCorreo = mTextViewNuevo.getText().toString();
-                intent.putExtra("variable_TipoCorreo", tituloCorreo);
-                //Toast.makeText(getContext(), "Prueba "+tituloCorreo, Toast.LENGTH_LONG).show();
+            mCardViewEmailNuevo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    String tituloCorreo = mTextViewNuevo.getText().toString();
+                    intent.putExtra("variable_TipoCorreo", tituloCorreo);
+                    //Toast.makeText(getContext(), "Prueba "+tituloCorreo, Toast.LENGTH_LONG).show();
 
-                startActivity(intent);
-            }
-        });
+                    startActivity(intent);
+                }
+            });
+        }catch (Exception e){
+            Toast.makeText(getContext(),"Error de tipo: "+  e, Toast.LENGTH_LONG).show();
+        }
 
         return mView;
     }
