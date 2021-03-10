@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cenidet.R;
+import com.example.cenidet.activities.FormularioActivity;
 import com.example.cenidet.activities.MainActivity;
 import com.example.cenidet.activities.PostActivity;
 import com.example.cenidet.adapters.PostsAdapter;
@@ -107,9 +108,23 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId()== R.id.itemLogout){
-                    logout();
+                int id = item.getItemId();
+                switch(id){
+                    case R.id.itemFormulario:
+                         goform();
+                         break;
+                    case R.id.itemLogout:
+                        logout();
+                        break;
                 }
+                /*if(item.getItemId() == R.id.itemFormulario)
+                {
+                    form();
+                }
+                else(item.getItemId() == R.id.itemLogout)
+                {
+                    logout();
+                }*/
                 return true;
             }
         });
@@ -185,6 +200,11 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mAuthProvider.logout();
         Intent intent = new Intent(getContext(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void goform() {
+        Intent intent = new Intent(getContext(), FormularioActivity.class);
         startActivity(intent);
     }
 
