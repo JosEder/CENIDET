@@ -88,12 +88,11 @@ public class RegisterActivity extends AppCompatActivity {
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Alumno")){
-
-                    getmTextInputMatricula.setHint("");
+                if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Estudiante")){
+                    //getmTextInputMatricula.setHint("");
                     getmTextInputMatricula.setHint("Matricula");
                 }else{
-                    getmTextInputMatricula.setHint("");
+                    //getmTextInputMatricula.setHint("");
                     getmTextInputMatricula.setHint("Id Maestro");
                 }
             }
