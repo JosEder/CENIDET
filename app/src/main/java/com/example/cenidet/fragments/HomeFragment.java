@@ -108,6 +108,7 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                //Se agrego el item para el acceso al formulario de estudiantes
                 int id = item.getItemId();
                 switch(id){
                     case R.id.itemFormulario:
@@ -117,14 +118,12 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
                         logout();
                         break;
                 }
-                /*if(item.getItemId() == R.id.itemFormulario)
-                {
-                    form();
-                }
-                else(item.getItemId() == R.id.itemLogout)
+                /*
+                if(item.getItemId() == R.id.itemLogout)
                 {
                     logout();
-                }*/
+                }
+                */
                 return true;
             }
         });

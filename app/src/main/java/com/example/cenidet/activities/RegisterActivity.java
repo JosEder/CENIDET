@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -43,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     AuthProvider mAuthProvider;
     UsersProvider mUsersProvider;
     AlertDialog mDialog;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                         createUser(username, email, password, matricula,tipocuenta);
                     }else{
                         Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_LONG).show();
-
                     }
-
                 }else{
                     Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
 
@@ -133,7 +134,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         }else{
             Toast.makeText(this, "Para continuar inserta todos los campos", Toast.LENGTH_LONG).show();
-
         }
     }
 
@@ -158,9 +158,20 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             mDialog.dismiss();
                             if (task.isSuccessful()){
-                                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
+                                //Se envia el correo de verificacion de correo
+                                mAuthProvider.getUserSesion().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(RegisterActivity.this, "Usuario registrado correctamente\nPor favor revise su correo para verificación", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intent);
+                                        }else{
+                                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
                             }else{
                                 Toast.makeText(RegisterActivity.this, "No se pudo almacenar el usario en la base de datos", Toast.LENGTH_LONG).show();
                             }

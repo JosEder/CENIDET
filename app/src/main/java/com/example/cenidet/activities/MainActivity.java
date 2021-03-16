@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(mAuthPovider.getUserSesion() != null){
+        //Cuando inicia la aplicación se verifica si el correo esta validado
+        if(mAuthPovider.getUserSesion() != null && mAuthPovider.getUserSesion().isEmailVerified()){
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -201,9 +202,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     mDialog.dismiss();
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        if(mAuthPovider.getUserSesion().isEmailVerified()){
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(MainActivity.this, "Por favor verifique su correo", Toast.LENGTH_LONG).show();
+                        }
                     }
                     else {
                         Toast.makeText(MainActivity.this, "El email o la contraseña que ingresaste no son correctas", Toast.LENGTH_LONG).show();
