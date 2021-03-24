@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.VisionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Ser una institución reconocida nacional e internacionalmente por su calidad en la investigación y la formación integral de investigadores e innovadores tecnológicos, que contribuyan al desarrollo pertinente y sustentable."
+        android:textSize="18dp"
+        android:justificationMode="inter_word"
+        android:padding="10dp"
+        android:textColor="@android:color/background_dark"
+        />
+
+</FrameLayout>

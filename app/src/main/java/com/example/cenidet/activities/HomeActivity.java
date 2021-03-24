@@ -1,31 +1,54 @@
 package com.example.cenidet.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toolbar;
 
 import com.example.cenidet.R;
 import com.example.cenidet.fragments.ChatFragment;
+import com.example.cenidet.fragments.CodigoEticaFragment;
+import com.example.cenidet.fragments.DirectorioFragment;
 import com.example.cenidet.fragments.FiltersFragment;
+import com.example.cenidet.fragments.HistoriaFragment;
 import com.example.cenidet.fragments.HomeFragment;
+import com.example.cenidet.fragments.MensajeDirectoraFragment;
+import com.example.cenidet.fragments.MisionFragment;
+import com.example.cenidet.fragments.OrganigramaFragment;
 import com.example.cenidet.fragments.ProfileFragment;
+import com.example.cenidet.fragments.ValoresFragment;
+import com.example.cenidet.fragments.VisionFragment;
 import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.TokenProvider;
 import com.example.cenidet.providers.UsersProvider;
 import com.example.cenidet.utils.ViewedMessageHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
-public class HomeActivity extends AppCompatActivity {
+import java.security.KeyStore;
+import java.util.Objects;
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigation;
 
     TokenProvider mTokenProvider;
     AuthProvider mAuthProvider;
     UsersProvider mUsersProvider;
+
+    //Elementos para el Navigation Drawer
+    DrawerLayout mDrawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +63,20 @@ public class HomeActivity extends AppCompatActivity {
         mUsersProvider = new UsersProvider();
         openFragment(new HomeFragment());
         creatToken();
+
+        //UI
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.start, R.string.close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //
+
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -84,7 +121,78 @@ public class HomeActivity extends AppCompatActivity {
                 }
             };
 
+
     private void creatToken(){
         mTokenProvider.create(mAuthProvider.getUid());
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        selectItemNav(menuItem);
+        return true;
+    }
+
+    private void selectItemNav(MenuItem menuItem) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        switch (menuItem.getItemId()){
+            case R.id.nav_home:
+                openFragment(new HomeFragment());
+                //ft.replace(R.id.content, new HomeFragment()).commit();
+                break;
+            case R.id.nav_form:
+                goform();
+                break;
+            case R.id.nav_logout:
+                logout();
+                break;
+            case R.id.nav_mision:
+                openFragment(new MisionFragment());
+                //ft.replace(R.id.content, new MisionFragment()).commit();
+                break;
+            case R.id.nav_vision:
+                openFragment(new VisionFragment());
+                break;
+            case R.id.nav_valores:
+                openFragment(new ValoresFragment());
+                break;
+            case R.id.nav_cod_etica:
+                openFragment(new CodigoEticaFragment());
+                break;
+            case R.id.nav_historia:
+                openFragment(new HistoriaFragment());
+                break;
+            case R.id.nav_organigrama:
+                openFragment(new OrganigramaFragment());
+                break;
+            case R.id.nav_directorio:
+                openFragment(new DirectorioFragment());
+                break;
+            case R.id.nav_msj_directora:
+                openFragment(new MensajeDirectoraFragment());
+                break;
+        }
+        mDrawerLayout.closeDrawers();
+    }
+
+    private void logout() {
+        mAuthProvider.logout();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void goform() {
+        Intent intent = new Intent(getApplicationContext(), FormularioActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        //super.onOptionsItemSelected(item)
+        return true;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.PopupMenu;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.PostProvider;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.Query;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -44,6 +46,8 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     PostProvider mPostProvider;
     PostsAdapter mPostAdapter;
     PostsAdapter mPostAdapterSearch;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -103,7 +107,8 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mAuthProvider = new AuthProvider();
         mPostProvider = new PostProvider();
 
-        mSearchBar.setOnSearchActionListener(this);
+        /*mSearchBar.setOnSearchActionListener(this);
+
         mSearchBar.inflateMenu(R.menu.main_menu);
         mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -123,10 +128,10 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
                 {
                     logout();
                 }
-                */
+
                 return true;
             }
-        });
+        });*/
 
 
         //Esta condicion determina de manera fija si es el ID del administrador para realizar publicaciones.

@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment"
-    android:layout_marginBottom="50dp">
+    android:layout_marginBottom="50dp"
+    >
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorWhite"
+        >
 
         <com.mancj.materialsearchbar.MaterialSearchBar
+            android:id="@+id/searchBar"
             style="@style/MaterialSearchBarLight"
-            app:mt_hint="Text de busqueda"
-            app:mt_placeholder="Buscar"
-            app:mt_maxSuggestionsCount="10"
-            app:mt_searchBarColor="@color/colorPrimary"
-            app:mt_placeholderColor="@color/colorWhite"
-            app:mt_textColor="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:mt_searchIconTint="@color/colorWhite"
-            app:mt_menuIconTint="@color/colorWhite"
-            app:mt_clearIconTint="@color/colorWhite"
-            app:mt_hintColor="@color/colorWhite"
             app:mt_backIconTint="@color/colorWhite"
+            app:mt_clearIconTint="@color/colorWhite"
+            app:mt_hint="Text de busqueda"
+            app:mt_hintColor="@color/colorWhite"
             app:mt_leftTextSelectorTint="@color/colorGrey"
-            android:id="@+id/searchBar" />
+            app:mt_maxSuggestionsCount="10"
+            app:mt_menuIconTint="@color/colorWhite"
+            app:mt_placeholder="Buscar"
+            app:mt_placeholderColor="@color/colorWhite"
+            app:mt_searchBarColor="@color/colorPrimary"
+            app:mt_searchIconTint="@color/colorWhite"
+            app:mt_textColor="@color/colorWhite" />
 
     </LinearLayout>
 
@@ -60,4 +64,4 @@
 
 
 
-</FrameLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

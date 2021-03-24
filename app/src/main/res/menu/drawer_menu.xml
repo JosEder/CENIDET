@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:checked="true"
+            >
+        </item>
+        <item
+            android:id="@+id/nav_form"
+            android:title="Formulario para estudiantes"
+            >
+        </item>
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Cerrar sesion"
+            >
+        </item>
+    </group>
+    <item android:title="Conocenos">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_mision"
+                    android:title="Misión">
+                </item>
+                <item
+                    android:id="@+id/nav_vision"
+                    android:title="Visión">
+                </item>
+                <item
+                    android:id="@+id/nav_valores"
+                    android:title="Valores">
+                </item>
+                <item
+                    android:id="@+id/nav_cod_etica"
+                    android:title="Código de Ética">
+                </item>
+                <item
+                    android:id="@+id/nav_historia"
+                    android:title="Historia">
+                </item>
+                <item
+                    android:id="@+id/nav_organigrama"
+                    android:title="Organigrama">
+                </item>
+                <item
+                    android:id="@+id/nav_directorio"
+                    android:title="Directorio">
+                </item>
+                <item
+                    android:id="@+id/nav_msj_directora"
+                    android:title="Mensaje de la Directora">
+                </item>
+            </group>
+        </menu>
+    </item>
+</menu>
