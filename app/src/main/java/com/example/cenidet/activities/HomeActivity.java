@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout mDrawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    //Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //UI
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        //toolbar = findViewById(R.id.toolbar);
+
+
 
         toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.start, R.string.close);
         mDrawerLayout.addDrawerListener(toggle);
@@ -74,6 +78,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //
+        //Setup toolbar
+        //setSupportActionBar(toolbar);
 
         navigationView.setNavigationItemSelectedListener(this);
 

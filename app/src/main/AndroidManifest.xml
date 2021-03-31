@@ -17,7 +17,7 @@
         android:roundIcon="@drawable/iconaplicacion5"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.FormularioActivity"></activity>
+        <activity android:name=".activities.FormularioActivity" />
         <activity android:name=".activities.ChatActivity" />
         <activity
             android:name=".activities.FiltersActivity"

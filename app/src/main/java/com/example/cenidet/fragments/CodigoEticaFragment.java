@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.cenidet.R;
+import com.example.cenidet.providers.PDFStreamProvider;
+import com.github.barteksc.pdfviewer.PDFView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +28,10 @@ public class CodigoEticaFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    View mView;
+    PDFView pdfView;
+    ProgressBar progressBar;
 
     public CodigoEticaFragment() {
         // Required empty public constructor
@@ -61,6 +68,14 @@ public class CodigoEticaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_codigo_etica, container, false);
+
+        mView =  inflater.inflate(R.layout.fragment_codigo_etica, container, false);
+        pdfView = mView.findViewById(R.id.pdf_viewer);
+        progressBar = mView.findViewById(R.id.progressBar);
+
+        String urlPdf = "https://cenidet.tecnm.mx/docs/Codigos-de-Etica-TecNM.pdf";
+        new PDFStreamProvider(pdfView, progressBar).execute(urlPdf);
+
+        return mView;
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.example.cenidet.R;
 import com.example.cenidet.activities.FormularioActivity;
+import com.example.cenidet.activities.HomeActivity;
 import com.example.cenidet.activities.MainActivity;
 import com.example.cenidet.activities.PostActivity;
 import com.example.cenidet.adapters.PostsAdapter;
@@ -46,7 +48,6 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     PostProvider mPostProvider;
     PostsAdapter mPostAdapter;
     PostsAdapter mPostAdapterSearch;
-
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -107,10 +108,12 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mAuthProvider = new AuthProvider();
         mPostProvider = new PostProvider();
 
-        /*mSearchBar.setOnSearchActionListener(this);
 
-        mSearchBar.inflateMenu(R.menu.main_menu);
-        mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        mSearchBar.setOnSearchActionListener(this);
+
+        //mSearchBar.inflateMenu(R.menu.main_menu);
+
+        /*mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 //Se agrego el item para el acceso al formulario de estudiantes
@@ -197,18 +200,6 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
 
     private void goToPost() {
         Intent intent= new Intent(getContext(), PostActivity.class);
-        startActivity(intent);
-    }
-
-    private void logout() {
-        mAuthProvider.logout();
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    private void goform() {
-        Intent intent = new Intent(getContext(), FormularioActivity.class);
         startActivity(intent);
     }
 

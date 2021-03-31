@@ -1,21 +1,30 @@
-package com.example.cenidet.fragments;
+    package com.example.cenidet.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.cenidet.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MisionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MisionFragment extends Fragment {
+public class MisionFragment extends Fragment implements View.OnTouchListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +34,15 @@ public class MisionFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    /*TextView textView;
+    View mView;
+
+    final static float move = 200;
+    float ratio = 1.0f;
+    int baseDist;
+    float baseRatio;*/
+
 
     public MisionFragment() {
         // Required empty public constructor
@@ -62,5 +80,39 @@ public class MisionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mision, container, false);
+        /*
+        mView =  inflater.inflate(R.layout.fragment_mision, container, false);
+        textView = mView.findViewById(R.id.text_view);
+        textView.setTextSize(ratio+15);
+        return mView;
+        */
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
+    }
+
+    /*public boolean onTouchEvent (MotionEvent event) {
+        if(event.getPointerCount() == 2){
+            int action = event.getAction();
+            int mainaction = action&MotionEvent.ACTION_MASK;
+            if(mainaction == MotionEvent.ACTION_POINTER_DOWN){
+                baseDist = getDistance(event);
+                baseRatio = ratio;
+            }else {
+                float scale  = (getDistance(event)-baseDist)/move;
+                float factor = (float) Math.pow(2,scale);
+                ratio = Math.min(1024.0f,Math.max(0.1f,baseRatio*factor));
+                textView.setTextSize(ratio+15);
+            }
+        }
+        return true;
+    }*/
+
+    private int getDistance(MotionEvent event){
+        int dx = (int) (event.getX(0)-event.getX(1));
+        int dy = (int) (event.getY(0)-event.getY(1));
+        return (int) (Math.sqrt(dx*dx+dy*dy));
     }
 }

@@ -6,10 +6,85 @@
     tools:context=".fragments.MensajeDirectoraFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Mensaje de la Directora Fragmento"
-        android:textSize="30dp" />
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:padding="10dp"
+                android:text="El Tecnológico Nacional de México/Centro Nacional de Investigación y Desarrollo Tecnológico (TecNM/Cenidet) creado en enero de 1987 y, ubicado en Cuernavaca, Morelos, México, es un Centro de excelencia en los posgrados que imparte y en la investigación que desarrolla, siendo una institución colaborativa e interdisciplinaria con un enfoque ingenieril en las áreas de electrónica, mecánica y ciencias computacionales, con una amplia gama de aplicaciones en el sector tecnológico y en la industria. Nuestro Centro, cuenta con 53 profesores-investigadores, de los cuales el 78% están inscritos en el Sistema Nacional de Investigadores (SNI) del Conacyt, representando el campus del TecNM con el mayor número de SNI a nivel nacional, y con el mayor número de publicaciones en revistas indizadas."
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:padding="10dp"
+                android:text="Las líneas de investigación del TecNM/Cenidet son de alto impacto tecnológico orientadas a: Inteligencia artificial, Cómputo inteligente, Ingeniería de software, Sistemas Inteligentes, Cómputo Científico, Electrónica de Potencia, Control Automático, Optimización de Sistemas Mecánicos y Análisis y diseño térmico de edificaciones y sistemas solares. Nuestra institución ofrece 6 posgrados en su modalidad de maestría y doctorado en 3 áreas: Ciencias en Ingeniería Mecánica, Ciencias en Ingeniería en Electrónica y Ciencias de la Computación, los cuales son parte del padrón del Programa Nacional de Posgrados de Calidad (PNPC), esto implica que todos los alumnos tengan acceso a una beca de Conacyt, pudiendo también tener la movilidad de sus estudios, dentro y fuera del país. Los estudiantes del Cenidet han realizado estancias en China, Japón, Francia, España, Portugal, Colombia, Argentina y Brasil; contribuyendo en una formación sólida, brindando capacidades para desempeñase en el ámbito académico y empresarial. Además, como parte de sus actividades internas les ofrecemos talleres que abarcan otras áreas como el deporte, arte y cultura, que complementan su formación."
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:padding="10dp"
+                android:text="El TecNM/Cenidet es líder a nivel mundial en el tema de Diseño Mecánico, Sistemas Térmicos, Electrónica de Potencia y Control automático, con patentes, publicaciones internacionales en revistas con alto factor de impacto y, a nivel nacional, por estar dentro de los 5 TecNM del país con el 100% de sus posgrados en el PNPC. Hemos aportado a la sociedad, generación de conocimiento de alto valor agregado, así como profesionistas que tiene presencia en la industria a nivel estatal, nacional e internacional en cargos directivos y de investigación en empresas como ABB en Suiza, Intel en Jalisco y Morelos, Osram de México, Philips, John Deere, el Instituto Mexicano del Petróleo y en el Centro Biográfico Internacional, por mencionar algunos. Hemos realizado Convenios con instituciones locales, nacionales e internacionales, generado patentes, realizando servicios, articulando proyectos de impacto nacional e internacional."
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:padding="10dp"
+                android:text="Además de tener en claro, el compromiso de apoyar a nuestra sociedad con escuelas de verano, cursos para los diferentes niveles educativos y con un programa de divulgación de la ciencia que ofrece: Conferencias, talleres y visitas guiadas, entre otros, así como la generación de material que se publica en diferentes medios, principalmente electrónicos. Cada día trabajamos con la visión de ser una institución reconocida nacional e internacionalmente por su calidad en la investigación y la formación integral de investigadores e innovadores tecnológicos, que contribuyan al desarrollo pertinente y sustentable."
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Dra. Yesica Imelda Saavedra Benítez"
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:paddingLeft="10dp"
+                android:text="Directora"
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:justificationMode="inter_word"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Tecnológico Nacional de México/Centro Nacional de Investigación y Desarrollo Tecnológico"
+                android:textSize="18dp"
+                android:textColor="@color/colorAccent"
+                />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
