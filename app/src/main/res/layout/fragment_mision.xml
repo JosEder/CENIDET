@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:andorid="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:andorid="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragments.MisionFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <include
-            layout="@layout/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <FrameLayout
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-            </FrameLayout>
-        </include>
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        andorid:title="Misión"
+        andorid:titleTextColor="@color/colorWhite"/>
 
-        <TextView
-            android:id="@+id/text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Formar investigadores e innovadores tecnológicos competitivos internacionalmente que aporten soluciones tecnológicas, mediante un ejercicio responsable y ético."
-            android:textColor="@color/colorAccent"
-            android:textSize="18dp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:padding="10dp"
+        android:text="Formar investigadores e innovadores tecnológicos competitivos internacionalmente que aporten soluciones tecnológicas, mediante un ejercicio responsable y ético."
+        android:textColor="@color/colorAccent"
+        android:textSize="18dp" />
 
 
-</RelativeLayout>
+</LinearLayout>

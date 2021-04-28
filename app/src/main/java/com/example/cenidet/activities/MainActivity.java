@@ -37,6 +37,9 @@ import dmax.dialog.SpotsDialog;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Boton para restablecer la contraseña
+    TextView mTextViewResetPassword;
+
     TextView mTextViewRegister;
     TextInputEditText mTextInputEmail;
     TextInputEditText mTextInputPassword;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mTextInputEmail = findViewById(R.id.textInputEmail);
         mTextInputPassword = findViewById(R.id.textInputPassword);
         mButtonLogin = findViewById(R.id.btnLogin);
+        mTextViewResetPassword = findViewById(R.id.textViewResetPassword);
         mButtonGoogle = findViewById(R.id.btnLoginGoogle);
 
         mDialog = new SpotsDialog.Builder()
@@ -85,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 login();
+            }
+        });
+
+        mTextViewResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
             }
         });
 

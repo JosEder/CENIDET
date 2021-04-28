@@ -168,7 +168,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         String email = documentSnapshot.getString("email");
                         mTextViewEmail.setText(email);
                     }
-                    if(mAuthProvider.getUid().equals("tmtpCi4o3IeB0TsiCirkPpnMYJ52")){
+                    if(mAuthProvider.getUid().equals(R.array.UID_Admins)){
                         mTextViewMatricula.setText("ADMINISTRADOR");
                     }else{
                         if(documentSnapshot.contains("matricula")){

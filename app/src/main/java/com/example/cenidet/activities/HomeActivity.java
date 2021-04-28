@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toolbar;
 
 import com.example.cenidet.R;
+import com.example.cenidet.fragments.AboutFragment;
 import com.example.cenidet.fragments.ChatFragment;
 import com.example.cenidet.fragments.CodigoEticaFragment;
 import com.example.cenidet.fragments.DirectorioFragment;
@@ -48,8 +49,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     //Elementos para el Navigation Drawer
     DrawerLayout mDrawerLayout;
     NavigationView navigationView;
-    ActionBarDrawerToggle toggle;
+    //ActionBarDrawerToggle toggle;
     //Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,21 +70,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //UI
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        //toolbar = findViewById(R.id.toolbar);
+        //toolbar = findViewById(R.id.barraherramienta);
 
 
 
-        toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.start, R.string.close);
-        mDrawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        //toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.start, R.string.close);
+        //mDrawerLayout.addDrawerListener(toggle);
+        //toggle.syncState();
 
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //
         //Setup toolbar
         //setSupportActionBar(toolbar);
 
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     @Override
@@ -149,27 +151,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_form:
                 goform();
                 break;
+            case R.id.nav_convocatoria:
+                Intent intent = new Intent(getApplicationContext(), ConvocatoriaActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_JCyTA:
+                Intent intent2 = new Intent(getApplicationContext(), JCyTA_Activity.class);
+                startActivity(intent2);
+                break;
+            case R.id.nav_Coloquio_Virtual:
+                Intent intent3 = new Intent(getApplicationContext(), ColoquioVirtualActivity.class);
+                startActivity(intent3);
+                break;
             case R.id.nav_logout:
                 logout();
                 break;
-            case R.id.nav_mision:
-                openFragment(new MisionFragment());
+            case R.id.nav_about:
+                openFragment(new AboutFragment());
                 //ft.replace(R.id.content, new MisionFragment()).commit();
-                break;
-            case R.id.nav_vision:
-                openFragment(new VisionFragment());
-                break;
-            case R.id.nav_valores:
-                openFragment(new ValoresFragment());
                 break;
             case R.id.nav_cod_etica:
                 openFragment(new CodigoEticaFragment());
-                break;
-            case R.id.nav_historia:
-                openFragment(new HistoriaFragment());
-                break;
-            case R.id.nav_organigrama:
-                openFragment(new OrganigramaFragment());
                 break;
             case R.id.nav_directorio:
                 openFragment(new DirectorioFragment());
@@ -193,12 +195,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(toggle.onOptionsItemSelected(item)){
             return true;
         }
         //super.onOptionsItemSelected(item)
         return true;
-    }
+    }*/
 }

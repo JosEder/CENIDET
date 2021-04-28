@@ -15,12 +15,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.activities.FormularioActivity;
 import com.example.cenidet.activities.HomeActivity;
 import com.example.cenidet.activities.MainActivity;
 import com.example.cenidet.activities.PostActivity;
+import com.example.cenidet.activities.ResetPasswordActivity;
 import com.example.cenidet.adapters.PostsAdapter;
 import com.example.cenidet.models.Post;
 import com.example.cenidet.providers.AuthProvider;
@@ -138,8 +140,9 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
 
 
         //Esta condicion determina de manera fija si es el ID del administrador para realizar publicaciones.
-        if(mAuthProvider.getUid().equals("tmtpCi4o3IeB0TsiCirkPpnMYJ52")){
+        if(mAuthProvider.getUid().equals(R.array.UID_Admins)){
             mFab.setVisibility(View.VISIBLE);
+            //Toast.makeText(getActivity(),"Todo bien", Toast.LENGTH_LONG).show();
             mFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

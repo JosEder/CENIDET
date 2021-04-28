@@ -17,6 +17,10 @@
         android:roundIcon="@drawable/iconaplicacion5"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ResetPasswordActivity"></activity>
+        <activity android:name=".activities.ConvocatoriaActivity" />
+        <activity android:name=".activities.ColoquioVirtualActivity" />
+        <activity android:name=".activities.JCyTA_Activity" />
         <activity android:name=".activities.FormularioActivity" />
         <activity android:name=".activities.ChatActivity" />
         <activity

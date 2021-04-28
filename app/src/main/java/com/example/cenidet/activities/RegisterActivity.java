@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cenidet.R;
@@ -121,18 +125,20 @@ public class RegisterActivity extends AppCompatActivity {
                     if(password.length()>=6){
                         createUser(username, email, password, matricula,tipocuenta);
                     }else{
-                        Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_LONG).show();
+                        mostrarToast("Error\nLa contraseña debe tener al menos 6 caracteres");
+                        //Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_LONG).show();
                     }
                 }else{
                     Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
-
+                    mostrarToast("Error\nLas contraseñas no coinciden");
                 }
             }else{
-                Toast.makeText(this, "Has insertado todos los campos pero el correo no es valido", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Has insertado todos los campos pero el correo no es valido", Toast.LENGTH_LONG).show();
+                mostrarToast("Correo electrónico no valido");
             }
-
         }else{
-            Toast.makeText(this, "Para continuar inserta todos los campos", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Para continuar inserta todos los campos", Toast.LENGTH_LONG).show();
+            mostrarToast("Para continuar inserte todos los campos");
         }
     }
 
@@ -162,25 +168,28 @@ public class RegisterActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
-                                            Toast.makeText(RegisterActivity.this, "Usuario registrado correctamente\nPor favor revise su correo para verificación", Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(RegisterActivity.this, "Usuario registrado correctamente\nPor favor revise su correo para verificación", Toast.LENGTH_LONG).show();
+                                            mostrarToast("Usuario registrado correctamente\\nPor favor revise su correo para verificación");
                                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                             //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
                                         }else{
-                                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                            mostrarToast("Error\n" + task.getException().getMessage());
                                         }
                                     }
                                 });
                             }else{
-                                Toast.makeText(RegisterActivity.this, "No se pudo almacenar el usario en la base de datos", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(RegisterActivity.this, "No se pudo almacenar el usario en la base de datos", Toast.LENGTH_LONG).show();
+                                mostrarToast("No se pudo almacenar el usario en la base de datos");
                             }
                         }
                     });
 
                 }else{
                     mDialog.dismiss();
-                    Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_LONG).show();
-
+                    //Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_LONG).show();
+                    mostrarToast("No se pudo registrar el usuario");
                 }
             }
         });
@@ -194,6 +203,18 @@ public class RegisterActivity extends AppCompatActivity {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    private void mostrarToast(String s){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,(ViewGroup) findViewById(R.id.toastLayout));
+        TextView tv=layout.findViewById(R.id.textview);
+        tv.setText(s);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
 }

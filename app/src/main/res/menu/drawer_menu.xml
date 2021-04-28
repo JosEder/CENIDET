@@ -3,56 +3,52 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:title="Home"
             android:checked="true"
-            >
-        </item>
+            android:title="Home"></item>
         <item
             android:id="@+id/nav_form"
-            android:title="Formulario para estudiantes"
-            >
-        </item>
+            android:title="Residencias y Verano científico"></item>
         <item
-            android:id="@+id/nav_logout"
-            android:title="Cerrar sesion"
-            >
+            android:id="@+id/nav_convocatoria"
+            android:title="Convocatoria de ingreso"></item>
+        <item
+            android:title="Eventos académicos">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_JCyTA"
+                        android:title="Jornada de Ciencia y Tecnología aplicada"></item>
+                    <item
+                        android:id="@+id/nav_Coloquio_Virtual"
+                        android:title="Coloquio virtual"></item>
+                </group>
+            </menu>
         </item>
     </group>
-    <item android:title="Conocenos">
+    <item android:title="Conócenos">
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_mision"
-                    android:title="Misión">
-                </item>
-                <item
-                    android:id="@+id/nav_vision"
-                    android:title="Visión">
-                </item>
-                <item
-                    android:id="@+id/nav_valores"
-                    android:title="Valores">
-                </item>
+                    android:id="@+id/nav_about"
+                    android:title="Acerca de"></item>
                 <item
                     android:id="@+id/nav_cod_etica"
-                    android:title="Código de Ética">
-                </item>
-                <item
-                    android:id="@+id/nav_historia"
-                    android:title="Historia">
-                </item>
-                <item
-                    android:id="@+id/nav_organigrama"
-                    android:title="Organigrama">
-                </item>
+                    android:title="Código de Ética"></item>
                 <item
                     android:id="@+id/nav_directorio"
-                    android:title="Directorio">
-                </item>
+                    android:title="Directorio"></item>
                 <item
                     android:id="@+id/nav_msj_directora"
-                    android:title="Mensaje de la Directora">
-                </item>
+                    android:title="Mensaje de la Directora"></item>
+            </group>
+        </menu>
+    </item>
+    <item android:title="Cambiar de cuenta">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_logout"
+                    android:title="Cerrar sesión"></item>
             </group>
         </menu>
     </item>

@@ -3,12 +3,14 @@
     <string name="registrate_ahora">REGISTRATE AHORA</string>
     <string name="registrate">REGISTRATE</string>
     <string name="todo">TODO</string>
-    <string name="correo_electronico">Correo Electronico</string>
+    <string name="correo_electronico">Correo Electrónico</string>
     <string name="contrase_a">Contraseña</string>
     <string name="confirmar_contrase_a">Confirmar Contraseña</string>
+    <string name="restablecer_contrasena">RESTABLECER CONTRASEÑA</string>
     <string name="nombre_de_usuario">Nombre de usuario</string>
     <string name="registrarse">REGISTRARSE</string>
-    <string name="no_tienes_cuenta">No tienes cuenta?</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta?</string>
+    <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
     <string name="registrate_aqui">REGISTRATE AQUI!!!</string>
     <string name="iniciar_sesion">INICIAR SESION</string>
     <string name="completa">COMPLETA INFORMACION</string>
@@ -28,6 +30,11 @@
         <item>Administrativo</item>
     </string-array>
 
+    <string-array name="UID_Admins">
+        <item>mbf5S4Kq1LYp0XrtMgyqiXVFcih1</item>
+        <item>RquMZZgQ3FXmRByHSh6fJx4jO8e2</item>
+        <item>9yroFHIs1nSVxfI5O71bwTtWFZH3</item>
+    </string-array>
 
     //Aqui se puede modificar para todos las listas
     <string-array name="departamentos">
@@ -55,9 +62,9 @@
     <string name="DescripcionValor3">Principalmente con el objetivo de mejorar nuestra situación competitiva en materia de formación de recursos humanos en investigación y mantener la calidad en el servicio a nuestros clientes y mantener un ambiente laboral excelente.</string>
     <string name="Valor4">Responsabilidad</string>
     <string name="DescripcionValor4">Actuar con probidad, aplicando la normatividad, obligación con el deber cumpliendo la misión y la moral, y contribuir activa y voluntariamente al mejoramiento social, económico y ambiental.
-    Eficaz y Agradable, se encuentran las firmas que han encontrado el equilibrio perfecto entre sus competencias técnicas y su estrategia de servicio al cliente, son organizaciones que se enfocan en el cliente porque saben que es él de quien dependen, están conscientes de la fuerte competencia y sus perspectivas apuntan al liderazgo.</string>
+    Eficaz y agradable, se encuentran las firmas que han encontrado el equilibrio perfecto entre sus competencias técnicas y su estrategia de servicio al cliente, son organizaciones que se enfocan en el cliente porque saben que es él de quien dependen, están conscientes de la fuerte competencia y sus perspectivas apuntan al liderazgo.</string>
     <string name="Valor5">Actitud de Servicio</string>
-    <string name="DescripcionValor5">Ser Eficaz y agradable, encontrando el equilibrio perfecto entre nuestras competencias técnicas y estrategias de servicio al cliente, como institución enfocarnos al cliente cumpliendo sus perspectivas y que ellos nos distingan por el liderazgo.</string>
+    <string name="DescripcionValor5">Ser eficaz y agradable, encontrando el equilibrio perfecto entre nuestras competencias técnicas y estrategias de servicio al cliente, como institución enfocarnos al cliente cumpliendo sus perspectivas y que ellos nos distingan por el liderazgo.</string>
 
     <string name="D_direccion">Dirección</string>
     <string name="D_direccion_telefono">362-7770 Ext.4101 362-7771</string>
