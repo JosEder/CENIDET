@@ -145,7 +145,7 @@ public class ProfileFragment extends Fragment {
        checkIfExistPost();
         tipoCuenta();
 
-        if(mAuthProvider.getUid().equals(R.array.UID_Admins)){
+        if(mAuthProvider.getUid().equals("RquMZZgQ3FXmRByHSh6fJx4jO8e2")){
             mLineerLayoutTextPulicaciones.setVisibility(View.VISIBLE);
             mLineerLayoutCantidadDePublicaciones.setVisibility(View.VISIBLE);
             mTextViewTipoCuenta.setText("ADMINISTRADOR");

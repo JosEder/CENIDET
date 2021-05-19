@@ -65,20 +65,17 @@ public class ChatActivity extends AppCompatActivity {
         mSpinner4.setSelection(recuperarDepartamento);
 
 
-
+        mCircleImageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         ;if(recuperarTituloCorreo != null){
             mEditTextSubject.setText("");
             mEditTextMessage.setText("");
         }else {
-
-            mCircleImageBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-
             if (recuperarTitulo == null) {
                 mEditTextSubject.setText("Informacion sobre:... (Desde la app)");
                 getUser();

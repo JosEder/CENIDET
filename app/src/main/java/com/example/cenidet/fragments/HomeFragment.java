@@ -112,7 +112,6 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
 
 
         mSearchBar.setOnSearchActionListener(this);
-
         //mSearchBar.inflateMenu(R.menu.main_menu);
 
         /*mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -140,7 +139,7 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
 
 
         //Esta condicion determina de manera fija si es el ID del administrador para realizar publicaciones.
-        if(mAuthProvider.getUid().equals(R.array.UID_Admins)){
+        if(mAuthProvider.getUid().equals("RquMZZgQ3FXmRByHSh6fJx4jO8e2")){
             mFab.setVisibility(View.VISIBLE);
             //Toast.makeText(getActivity(),"Todo bien", Toast.LENGTH_LONG).show();
             mFab.setOnClickListener(new View.OnClickListener() {

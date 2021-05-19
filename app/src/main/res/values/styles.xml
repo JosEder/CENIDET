@@ -5,7 +5,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="EditTextWhite" parent="TextAppearance.AppCompat">
@@ -23,7 +22,6 @@
     </style>
 
     <style name="EditTextBlue" parent="TextAppearance.AppCompat">
-
         <item name="android:textColorHint">@color/colorBlue</item>
         <item name="android:textColorPrimary">@color/colorBlue</item>
         <item name="colorAccent">@color/colorBlue</item>

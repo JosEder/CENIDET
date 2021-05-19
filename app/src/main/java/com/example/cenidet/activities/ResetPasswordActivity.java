@@ -1,4 +1,4 @@
-package com.example.cenidet.activities;
+ package com.example.cenidet.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,12 +54,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         mDialog.show();
                         resetPassword();
                     }else {
-                        //Toast.makeText(ResetPasswordActivity.this,"Por favor ingrese un correo valido", Toast.LENGTH_LONG).show();
-                        mostrarToast("Coreo electrónico inválido");
+                        Toast.makeText(ResetPasswordActivity.this,"Por favor ingrese un correo valido", Toast.LENGTH_LONG).show();
+                        //mostrarToast("Coreo electrónico inválido");
                     }
                 }else {
-                    //Toast.makeText(ResetPasswordActivity.this,"Por favor ingrese un correo", Toast.LENGTH_LONG).show();
-                    mostrarToast("Por favor ingrese un correo electrónico");
+                    Toast.makeText(ResetPasswordActivity.this,"Por favor ingrese un correo", Toast.LENGTH_LONG).show();
+                    //mostrarToast("Por favor ingrese un correo electrónico");
                 }
             }
         });
@@ -71,13 +71,13 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    //Toast.makeText(ResetPasswordActivity.this,"Se ha enviado un correo para reestablecer su contraseña", Toast.LENGTH_LONG).show();
-                    mostrarToast("Se ha enviado un correo para reestablecer su contraseña");
+                    Toast.makeText(ResetPasswordActivity.this,"Se ha enviado un correo para reestablecer su contraseña", Toast.LENGTH_LONG).show();
+                    //mostrarToast("Se ha enviado un correo para reestablecer su contraseña");
                     Intent intent = new Intent(ResetPasswordActivity.this, MainActivity.class);
                     startActivity(intent);
                 }else {
-                    //Toast.makeText(ResetPasswordActivity.this,"No se ha podido enviar el correo de restablecer contraseña", Toast.LENGTH_LONG).show();
-                    mostrarToast("No se ha podido enviar el correo de restablecer contraseña");
+                    Toast.makeText(ResetPasswordActivity.this,"No se ha podido enviar el correo de restablecer contraseña", Toast.LENGTH_LONG).show();
+                    //mostrarToast("No se ha podido enviar el correo de restablecer contraseña");
                 }
                 mDialog.dismiss();
             }
