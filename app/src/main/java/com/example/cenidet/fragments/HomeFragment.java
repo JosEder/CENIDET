@@ -168,6 +168,7 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     }
     private void getAllPost(){
         Query query = mPostProvider.getAll();
+
         FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
                 .setQuery(query, Post.class)
                 .build();
@@ -219,6 +220,6 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
 
     @Override
     public void onButtonClicked(int buttonCode) {
-
     }
+
 }

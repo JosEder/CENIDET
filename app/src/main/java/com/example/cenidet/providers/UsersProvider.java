@@ -38,6 +38,7 @@ public class UsersProvider {
         map.put("timestamp", new Date().getTime());
         map.put("image_profile", user.getImageProfile());
         map.put("image_cover", user.getImageCover());
+        map.put("tipocuenta",user.getTipocuenta());
         return mCollection.document(user.getId()).update(map);
     }
 

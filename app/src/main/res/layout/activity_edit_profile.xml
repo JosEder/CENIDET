@@ -64,7 +64,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputUsername"
+                    android:id="@+id/textInputUsername2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nombre_de_usuario"
@@ -75,6 +75,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayoutMatricula"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -100,7 +102,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Matricula/ Id maestro"
-                    android:inputType="textCapWords" />
+                    android:inputType="textCapWords"
+                    android:visibility="visible" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

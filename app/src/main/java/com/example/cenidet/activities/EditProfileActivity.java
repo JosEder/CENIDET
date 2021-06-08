@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.cenidet.R;
@@ -73,12 +74,15 @@ public class EditProfileActivity extends AppCompatActivity {
     String mMatricula ="";
     String mImageProfile ="";
     String mImageCover ="";
+    String mTipoCuenta = "";
 
     AlertDialog mDialogo;
 
     ImageProvider mImageProvider;
     UsersProvider mUsersProvider;
     AuthProvider mAuthProvider;
+
+    LinearLayout mLLMatricula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +92,10 @@ public class EditProfileActivity extends AppCompatActivity {
         mCircleImageViewBack = findViewById(R.id.cricleimageback);
         mCircleImageViewProfile = findViewById(R.id.circleImageProfile);
         mImageViewCover = findViewById(R.id.imageViewCover);
-        mTextInputUsername = findViewById(R.id.textInputUsername);
+        mTextInputUsername = findViewById(R.id.textInputUsername2);
         mTextInputMatricula = findViewById(R.id.textInputMatricula);
         mButtonEditProfile = findViewById(R.id.btnEditProfile);
+        mLLMatricula = findViewById(R.id.linearLayoutMatricula);
 
         mBuilderSelector = new AlertDialog.Builder(this);
         mBuilderSelector.setTitle("Seleciona una opcion");
@@ -132,9 +137,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         getUser();
-
     }
 
     /*CLAVE PARA LLAMAR INFORMACION EN LA BASE DE DATOS!!!!!!!!!!!
@@ -154,7 +157,11 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                     if(documentSnapshot.contains("matricula")){
                         mMatricula = documentSnapshot.getString("matricula");
+                        //Aqui puedo saber si recupero una matricula en caso de ser null podria ser un usuario externo que es lo unico probable pero ahorita checamos de se este el caso aqui intentare ocultar el poder cambiar la matricula para este tipo de usuarios
                         mTextInputMatricula.setText(mMatricula);
+                        if(mMatricula == ""){
+                            mTextInputMatricula.setEnabled(false);
+                        }
                     }
                     if(documentSnapshot.contains("image_profile")){
                         mImageProfile = documentSnapshot.getString("image_profile");
@@ -169,9 +176,11 @@ public class EditProfileActivity extends AppCompatActivity {
                         if(mImageCover != null){
                             if(!mImageCover.isEmpty()){
                                 Picasso.with(EditProfileActivity.this).load(mImageCover).into(mImageViewCover);
-
                             }
                         }
+                    }
+                    if(documentSnapshot.contains("tipocuenta")){
+                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
                     }
                 }
             }
@@ -182,7 +191,7 @@ public class EditProfileActivity extends AppCompatActivity {
         mUsername = mTextInputUsername.getText().toString();
         mMatricula= mTextInputMatricula.getText().toString();
 
-        if(!mUsername.isEmpty() && !mMatricula.isEmpty() ){
+        if((!mUsername.isEmpty() && !mMatricula.isEmpty()) || (!mUsername.isEmpty() && !mTextInputMatricula.isEnabled())){
             if(mImageFile != null && mImageFile2 !=null){
                 saveImageCoverAndProfile(mImageFile, mImageFile2);
             }
@@ -214,6 +223,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 user.setUsername(mUsername);
                 user.setMatricula(mMatricula);
                 user.setId(mAuthProvider.getUid());
+                user.setImageCover(mImageCover);
+                user.setImageProfile(mImageProfile);
                 updateInfo(user);
             }
 
@@ -256,7 +267,6 @@ public class EditProfileActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-
                         }
                     });
 
@@ -311,17 +321,20 @@ public class EditProfileActivity extends AppCompatActivity {
             mDialogo.show();
         }
 
+        if(!mTextInputMatricula.isEnabled()){
+            user.setTipocuenta("Externo");
+        }else{
+            user.setTipocuenta(mTipoCuenta);
+        }
         mUsersProvider.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 mDialogo.dismiss();
                 if(task.isSuccessful()){
-                    Toast.makeText(EditProfileActivity.this, "Se actualizao correctamente", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(EditProfileActivity.this, "Se actualizado correctamente", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(EditProfileActivity.this, "La informacion no se pudo actualizar", Toast.LENGTH_LONG).show();
-
                 }
             }
         });
@@ -440,7 +453,6 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         ViewedMessageHelper.upDateOnline(true, EditProfileActivity.this);
-
     }
 
     @Override

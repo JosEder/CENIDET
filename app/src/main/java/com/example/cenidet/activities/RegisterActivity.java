@@ -26,7 +26,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -58,13 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         mcircleImageViewBack=findViewById(R.id.cricleimageback);
         mTextInputEmail=findViewById(R.id.textInputEmail);
-        mTextInputUsername=findViewById(R.id.textInputUsername);
+        mTextInputUsername=findViewById(R.id.textInputUsername2);
         mTextInputPassword=findViewById(R.id.textInputPassword);
         mTextInputConfirmPassword=findViewById(R.id.textInputConfirmPassword);
         getmTextInputMatricula=findViewById(R.id.textInputMatricula);
         mSpinner = findViewById(R.id.spinner4);
         mLinearLayoutMatricula = findViewById(R.id.linearLayoutMatricula);
-        mButtonRegister=findViewById(R.id.btnRegister);
+        mButtonRegister=findViewById(R.id.btnRegister2);
         getmTextInputMatricula.setHint("Matricula");
 
         mAuthProvider=new AuthProvider();

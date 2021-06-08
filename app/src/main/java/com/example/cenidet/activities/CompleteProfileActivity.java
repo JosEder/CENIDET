@@ -37,9 +37,9 @@ public class CompleteProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
 
-        mTextInputUsername = findViewById(R.id.textInputUsername);
-        mTextInputMatricula = findViewById(R.id.textInputMatricula);
-        mButtonRegister = findViewById(R.id.btnRegister);
+        mTextInputUsername = findViewById(R.id.textInputUsername2);
+        //mTextInputMatricula = findViewById(R.id.textInputMatricula2);
+        mButtonRegister = findViewById(R.id.btnRegister2);
 
         mAuthProvider = new AuthProvider();
         mUsersProvider= new UsersProvider();
@@ -48,35 +48,38 @@ public class CompleteProfileActivity extends AppCompatActivity {
                 .setContext(this)
                 .setMessage("Espere un momento")
                 .setCancelable(false).build();
+        //Toast.makeText(this, "Se entro en la actividad CompleteProfileActivity", Toast.LENGTH_SHORT).show();
 
         mButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Toast.makeText(getApplicationContext(), "Se preciono el boton *Confirmar*", Toast.LENGTH_SHORT).show();
                 register();
             }
         });
-
     }
 
     private void register() {
         String username = mTextInputUsername.getText().toString();
-        String matricula = mTextInputMatricula.getText().toString();
-        if (!username.isEmpty()) {
-            updateUser(username, matricula);
+        //String matricula = mTextInputMatricula.getText().toString();
+        if(!username.isEmpty()) {
+            //Toast.makeText(this, "se registro usuario exitosamente", Toast.LENGTH_SHORT).show();
+            updateUser(username);
         }
         else {
-            Toast.makeText(this, "Para continuar inserta todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Para continuar ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void updateUser(final String username, final String matricula) {
+    private void updateUser(final String username) {
         String id = mAuthProvider.getUid();
         User user= new User();
         user.setUsername(username);
         user.setId(id);
-        user.setMatricula(matricula);
+        //user.setMatricula(matricula);
         user.setTimestamp(new Date().getTime());
-
+        user.setTipocuenta("Externo");
+        //Toast.makeText(getApplicationContext(), "Se actualizo las informacion del usuario", Toast.LENGTH_SHORT).show();
         mDialog.show();
         mUsersProvider.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -92,5 +95,4 @@ public class CompleteProfileActivity extends AppCompatActivity {
             }
         });
     }
-
 }
