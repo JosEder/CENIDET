@@ -130,7 +130,7 @@ public class ChatFragment extends Fragment {
                 if (documentSnapshot.exists()){
                     if(documentSnapshot.contains("tipocuenta")){
                         mTipoCuenta = documentSnapshot.getString("tipocuenta");
-                        Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
                         if(mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")||mTipoCuenta.equals("Externo")){
                             mLLSolicitudExpediente.setVisibility(View.GONE);
                             mLLSolicitudExpediente.setEnabled(false);

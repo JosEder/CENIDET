@@ -237,9 +237,9 @@ public class ChatActivity extends AppCompatActivity {
                 if (documentSnapshot.exists()){
                     if(documentSnapshot.contains("tipocuenta")){
                         mTipoCuenta = documentSnapshot.getString("tipocuenta");
-                        Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
                         if(mTipoCuenta.equals("Externo")){
-                            Toast.makeText(getApplicationContext(), "Todo bien", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Todo bien", Toast.LENGTH_LONG).show();
                             adDepExterno = ArrayAdapter.createFromResource(ChatActivity.this, R.array.departamento_externos, android.R.layout.simple_spinner_item);
                             mSpinner4.setAdapter(adDepExterno);
                         }
