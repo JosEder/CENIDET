@@ -178,7 +178,7 @@
             android:orientation="horizontal"
             >
             <CheckBox
-                android:id="@+id/checkBox1"
+                android:id="@+id/checkBoxAdministrativos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Administrativos"
@@ -188,7 +188,7 @@
                 android:layout_marginLeft="10dp"
                 />
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkBoxDocentes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Docentes"
@@ -203,7 +203,7 @@
             android:layout_marginTop="15dp"
             >
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/checkBoxEstudiantes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Estudiantes"
@@ -213,10 +213,10 @@
                 android:layout_marginLeft="10dp"
                 />
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/checkBoxExternos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="General"
+                android:text="Externos"
                 android:textSize="20sp"
                 android:textColor="@color/colorPrimary"
                 />

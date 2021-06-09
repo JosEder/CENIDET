@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -79,6 +80,12 @@ public class PostActivity extends AppCompatActivity {
     String mPhotopath2;
     File mPhotoFile2;
 
+    //CheckBox para elegir el tipo de cuenta a la que se le publicara la noticia
+    CheckBox mCBAdministrativos;
+    CheckBox mCBDocentes;
+    CheckBox mCBEstudiantes;
+    CheckBox mCBExternos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +113,12 @@ public class PostActivity extends AppCompatActivity {
         mTextInputDescription = findViewById(R.id.textInputDescripcion);
         mTextViewCategory = findViewById(R.id.textViewCategory);
         mCircleImageBack = findViewById(R.id.cricleimageback);
+
+        mCBAdministrativos = findViewById(R.id.checkBoxAdministrativos);
+        mCBDocentes = findViewById(R.id.checkBoxDocentes);
+        mCBEstudiantes = findViewById(R.id.checkBoxEstudiantes);
+        mCBExternos = findViewById(R.id.checkBoxExternos);
+
 
         mCircleImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,6 +239,7 @@ public class PostActivity extends AppCompatActivity {
     private void clicPost() {
         mTitle = mTextInputTitle.getText().toString();
         mDescription = mTextInputDescription.getText().toString();
+
         if (!mTitle.isEmpty() && !mDescription.isEmpty() && !mCategory.isEmpty()){
             //Seleciono ambas imagenes de la galeria
             if(mImageFile != null && mImageFile2 !=null){
@@ -269,7 +283,6 @@ public class PostActivity extends AppCompatActivity {
                                         mImageProvider.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                             @Override
                                             public void onSuccess(Uri uri2) {
-
                                                 String url2 = uri2.toString();
                                                 Post post= new Post();
                                                 post.setImage1(url);
@@ -279,7 +292,7 @@ public class PostActivity extends AppCompatActivity {
                                                 post.setCategory(mCategory);
                                                 post.setIdUser(mAuthProvider.getUid());
                                                 post.setTimestamp(new Date().getTime());
-                                                post.setTipocuenta("Alumno");
+                                                post.setTipocuenta(seleccionTipoCuenta());
                                                 mPostProvider.save(post).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> tasksave) {
@@ -389,4 +402,20 @@ public class PostActivity extends AppCompatActivity {
         ViewedMessageHelper.upDateOnline(false, PostActivity.this);
     }
 
+    private String seleccionTipoCuenta(){
+        String tipocuenta = "";
+        if(mCBAdministrativos.isChecked()){
+            tipocuenta += "Administrativo ";
+        }
+        if(mCBDocentes.isChecked()){
+            tipocuenta += "Docente ";
+        }
+        if(mCBEstudiantes.isChecked()){
+            tipocuenta += "Estudiante ";
+        }
+        if(mCBExternos.isChecked()){
+            tipocuenta += "Externo";
+        }
+        return tipocuenta;
+    }
 }

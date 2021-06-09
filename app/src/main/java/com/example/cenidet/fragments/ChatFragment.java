@@ -7,13 +7,19 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.activities.ChatActivity;
+import com.example.cenidet.providers.AuthProvider;
+import com.example.cenidet.providers.UsersProvider;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +45,10 @@ public class ChatFragment extends Fragment {
     TextView mTextViewNuevo;
     String tituloCorreo = "";
 
+    AuthProvider mAuthProvider;
+    UsersProvider mUsersProvider;
+    LinearLayout mLLSolicitudExpediente;
+    String mTipoCuenta;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -80,6 +90,11 @@ public class ChatFragment extends Fragment {
         mCardViewEmailNuevo = mView.findViewById(R.id.cardViewEmailBlanco);
         mTextViewSolicitud = mView.findViewById(R.id.textViewSolicitud);
         mTextViewNuevo = mView.findViewById(R.id.textViewNuevo);
+        mLLSolicitudExpediente = mView.findViewById(R.id.linearLayoutSolicitudExpediente);
+
+        mAuthProvider = new AuthProvider();
+        mUsersProvider = new UsersProvider();
+        getUser();
 
         try{
             mCardViewEmailAdminitrador.setOnClickListener(new View.OnClickListener() {
@@ -108,4 +123,22 @@ public class ChatFragment extends Fragment {
         return mView;
     }
 
+    private void getUser(){
+        mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    if(documentSnapshot.contains("tipocuenta")){
+                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                        Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        if(mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")||mTipoCuenta.equals("Externo")){
+                            mLLSolicitudExpediente.setVisibility(View.GONE);
+                            mLLSolicitudExpediente.setEnabled(false);
+                            mCardViewEmailAdminitrador.setEnabled(false);
+                        }
+                    }
+                }
+            }
+        });
+    }
 }

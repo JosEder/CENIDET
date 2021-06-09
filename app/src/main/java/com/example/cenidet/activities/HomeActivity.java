@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.cenidet.R;
@@ -31,9 +33,12 @@ import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.TokenProvider;
 import com.example.cenidet.providers.UsersProvider;
 import com.example.cenidet.utils.ViewedMessageHelper;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.mancj.materialsearchbar.MaterialSearchBar;
+import com.squareup.picasso.Picasso;
 
 import java.security.KeyStore;
 import java.util.Objects;
@@ -52,6 +57,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     //ActionBarDrawerToggle toggle;
     //Toolbar toolbar;
 
+    String mTipoCuenta;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //setSupportActionBar(toolbar);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        getUser();
     }
 
     @Override
@@ -203,4 +212,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //super.onOptionsItemSelected(item)
         return true;
     }*/
+
+   private void getUser(){
+       mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+           @Override
+           public void onSuccess(DocumentSnapshot documentSnapshot) {
+               if (documentSnapshot.exists()){
+                   if(documentSnapshot.contains("tipocuenta")){
+                       mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                       Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                       if(mTipoCuenta.equals("ADMINISTRADOR")||mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")||mTipoCuenta.equals("Estudiante")){
+                           menu = navigationView.getMenu();
+                           MenuItem ItemConvocatoria = menu.findItem(R.id.nav_convocatoria);
+                           ItemConvocatoria.setVisible(false);
+                       }
+                   }
+               }
+           }
+       });
+   }
 }

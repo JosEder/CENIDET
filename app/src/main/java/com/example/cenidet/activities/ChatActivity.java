@@ -6,8 +6,10 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -37,6 +39,8 @@ public class ChatActivity extends AppCompatActivity {
 
     UsersProvider mUsersProvider;
     AuthProvider mAuthProvider;
+    String mTipoCuenta = "";
+    ArrayAdapter <CharSequence> adDepExterno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,8 @@ public class ChatActivity extends AppCompatActivity {
 
         mUsersProvider = new UsersProvider();
         mAuthProvider = new AuthProvider();
+
+        getUserTipocuenta();
 
         recuperarTituloCorreo ="";
         recuperarTitulo = getIntent().getStringExtra("variable_Titulo");
@@ -211,7 +217,6 @@ public class ChatActivity extends AppCompatActivity {
                         String nombre2 = documentSnapshot.getString("username");
                         nombre = nombre2;
                     }
-
                     mEditTextMessage.setText("A quien corresponda.\n" +
                             "\n" +
                             "Por medio del presente, solicito atentamente la revisión de mi expediente, pues deseo presentar mi examen de grado en próximas fechas."+"\n" +
@@ -224,7 +229,23 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
+    private void getUserTipocuenta(){
+        mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    if(documentSnapshot.contains("tipocuenta")){
+                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                        Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        if(mTipoCuenta.equals("Externo")){
+                            Toast.makeText(getApplicationContext(), "Todo bien", Toast.LENGTH_LONG).show();
+                            adDepExterno = ArrayAdapter.createFromResource(ChatActivity.this, R.array.departamento_externos, android.R.layout.simple_spinner_item);
+                            mSpinner4.setAdapter(adDepExterno);
+                        }
+                    }
+                }
+            }
+        });
+    }
 }

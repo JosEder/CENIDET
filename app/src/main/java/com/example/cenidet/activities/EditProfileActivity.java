@@ -159,8 +159,9 @@ public class EditProfileActivity extends AppCompatActivity {
                         mMatricula = documentSnapshot.getString("matricula");
                         //Aqui puedo saber si recupero una matricula en caso de ser null podria ser un usuario externo que es lo unico probable pero ahorita checamos de se este el caso aqui intentare ocultar el poder cambiar la matricula para este tipo de usuarios
                         mTextInputMatricula.setText(mMatricula);
-                        if(mMatricula == ""){
+                        if(mMatricula.isEmpty()){
                             mTextInputMatricula.setEnabled(false);
+                            mLLMatricula.setVisibility(View.GONE);
                         }
                     }
                     if(documentSnapshot.contains("image_profile")){

@@ -54,6 +54,16 @@
         <item>Dep. de Recursos Financieros</item>
     </string-array>
 
+    <string-array name="departamento_externos">
+        <item>Dep. de Ingenieria Electronica</item>
+        <item>Dep. de Ingenieria Mecanica</item>
+        <item>Dep. de Ciencias Computacionales</item>
+        <item>Dep. de Dess. Academico e Idiomas</item>
+        <item>Dep. de Org. y Seguimiento de Estudios</item>
+        <item>Dep. de Gest. Tecn. y Vinculacion</item>
+        <item>Dep. de Servicios Escolares</item>
+    </string-array>
+
     <string name="Valor1">Respeto</string>
     <string name="DescripcionValor1">Respetar el criterio ajeno, sea éste igual o divergente del nuestro. Aplicar respeto total a la verdad, y no ser usuario del engaño y la mentira, ofrecer respeto total al desempeño del trabajo, y al derecho legal ajeno, cuidar que nuestros actos no sean causa de daños a nada ni a nadie. Respetar el medio ambiente y los recursos naturales.</string>
     <string name="Valor2">Honestidad</string>
