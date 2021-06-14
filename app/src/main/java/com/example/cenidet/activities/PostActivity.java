@@ -81,10 +81,8 @@ public class PostActivity extends AppCompatActivity {
     File mPhotoFile2;
 
     //CheckBox para elegir el tipo de cuenta a la que se le publicara la noticia
-    CheckBox mCBAdministrativos;
-    CheckBox mCBDocentes;
-    CheckBox mCBEstudiantes;
-    CheckBox mCBExternos;
+    CheckBox mCBAdministrativos, mCBDocentes, mCBEstudiantes, mCBExternos;
+    Boolean isforAdministrative, isforTeacher, isforStudent, isforExternal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,6 +283,7 @@ public class PostActivity extends AppCompatActivity {
                                             public void onSuccess(Uri uri2) {
                                                 String url2 = uri2.toString();
                                                 Post post= new Post();
+                                                post.setId("Post-"+ mAuthProvider.getUid() +"-"+ new Date().getTime());
                                                 post.setImage1(url);
                                                 post.setImage2(url2);
                                                 post.setTitle(mTitle.toLowerCase());
@@ -292,7 +291,12 @@ public class PostActivity extends AppCompatActivity {
                                                 post.setCategory(mCategory);
                                                 post.setIdUser(mAuthProvider.getUid());
                                                 post.setTimestamp(new Date().getTime());
-                                                post.setTipocuenta(seleccionTipoCuenta());
+                                                //post.setTipocuenta(seleccionTipoCuenta());
+                                                seleccionTipoCuenta();
+                                                post.setIsforAdministrative(isforAdministrative);
+                                                post.setIsforTeacher(isforTeacher);
+                                                post.setIsforStudent(isforStudent);
+                                                post.setIsforExternal(isforExternal);
                                                 mPostProvider.save(post).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> tasksave) {
@@ -402,20 +406,18 @@ public class PostActivity extends AppCompatActivity {
         ViewedMessageHelper.upDateOnline(false, PostActivity.this);
     }
 
-    private String seleccionTipoCuenta(){
-        String tipocuenta = "";
+    private void seleccionTipoCuenta(){
         if(mCBAdministrativos.isChecked()){
-            tipocuenta += "Administrativo ";
+            isforAdministrative = true;
         }
         if(mCBDocentes.isChecked()){
-            tipocuenta += "Docente ";
+            isforTeacher = true;
         }
         if(mCBEstudiantes.isChecked()){
-            tipocuenta += "Estudiante ";
+            isforStudent = true;
         }
         if(mCBExternos.isChecked()){
-            tipocuenta += "Externo";
+            isforExternal = true;
         }
-        return tipocuenta;
     }
 }

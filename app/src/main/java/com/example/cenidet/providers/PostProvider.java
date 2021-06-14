@@ -1,5 +1,7 @@
 package com.example.cenidet.providers;
 
+import android.widget.Toast;
+
 import com.example.cenidet.models.Post;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -31,13 +33,23 @@ public class PostProvider {
         return mCollection.orderBy("title").startAt(title).endAt(title+'\uf8ff');
     }
 
-    public Query getPostByUser(String id){ return mCollection.whereEqualTo("idUser", id) ;
+    public Query getPostByUser(String id){
+        return mCollection.whereEqualTo("idUser", id) ;
     }
 
     public Task<DocumentSnapshot> getPostById(String id){
         return mCollection.document(id).get();
     }
+
     public Task<Void> delete(String id ){
         return mCollection.document(id).delete();
+    }
+
+    public Query getPostTipoCuenta(String tipocuenta){
+        return mCollection.whereEqualTo(tipocuenta, true).orderBy("timestamp", Query.Direction.DESCENDING);
+    }
+
+    public Query getPostCollection(){
+        return mCollection.orderBy("timestamp", Query.Direction.DESCENDING);
     }
 }

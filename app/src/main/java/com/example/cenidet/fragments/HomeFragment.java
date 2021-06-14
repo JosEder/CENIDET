@@ -27,9 +27,12 @@ import com.example.cenidet.adapters.PostsAdapter;
 import com.example.cenidet.models.Post;
 import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.PostProvider;
+import com.example.cenidet.providers.UsersProvider;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -50,6 +53,9 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     PostProvider mPostProvider;
     PostsAdapter mPostAdapter;
     PostsAdapter mPostAdapterSearch;
+
+    UsersProvider mUsersProvider;
+    String mTipoCuenta;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -110,8 +116,14 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mAuthProvider = new AuthProvider();
         mPostProvider = new PostProvider();
 
+        mUsersProvider = new UsersProvider();
+
+
 
         mSearchBar.setOnSearchActionListener(this);
+
+        getUser();
+
         //mSearchBar.inflateMenu(R.menu.main_menu);
 
         /*mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -166,22 +178,10 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
         mRecycleView.setAdapter(mPostAdapterSearch);
         mPostAdapterSearch.startListening();
     }
-    private void getAllPost(){
-        Query query = mPostProvider.getAll();
-
-        FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
-                .setQuery(query, Post.class)
-                .build();
-        mPostAdapter = new PostsAdapter(options, getContext());
-        mPostAdapter.notifyDataSetChanged();
-        mRecycleView.setAdapter(mPostAdapter);
-        mPostAdapter.startListening();
-    }
 
     @Override
     public void onStart() {
         super.onStart();
-        getAllPost();
     }
 
     @Override
@@ -222,4 +222,66 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     public void onButtonClicked(int buttonCode) {
     }
 
+    private void getUser(){
+        mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    if(documentSnapshot.contains("tipocuenta")){
+                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                        Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        if(mTipoCuenta.equals("ADMINISTRADOR")){
+                            //Toast.makeText(getActivity(), "Tipo de cuenta: " + mTipoCuenta, Toast.LENGTH_SHORT).show();
+                            Query query = mPostProvider.getAll();
+
+                            FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
+                                    .setQuery(query, Post.class)
+                                    .build();
+                            mPostAdapter = new PostsAdapter(options, getContext());
+                            mPostAdapter.notifyDataSetChanged();
+                            mRecycleView.setAdapter(mPostAdapter);
+                            mPostAdapter.startListening();
+                        }else{
+                            switch(mTipoCuenta){
+                                case "Administrativo":
+                                    mTipoCuenta = "isforAdministrative";
+                                    break;
+                                case "Docente":
+                                    mTipoCuenta = "isforTeacher";
+                                    break;
+                                case "Estudiante":
+                                    mTipoCuenta = "isforStudent";
+                                    break;
+                                case "Externo":
+                                    mTipoCuenta = "isforExternal";
+                                    break;
+                            }
+
+                            Query query = mPostProvider.getPostTipoCuenta(mTipoCuenta);
+
+                            FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
+                                    .setQuery(query, Post.class)
+                                    .build();
+                            mPostAdapter = new PostsAdapter(options, getContext());
+                            mPostAdapter.notifyDataSetChanged();
+                            mRecycleView.setAdapter(mPostAdapter);
+                            mPostAdapter.startListening();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void getAllPost(){
+        Query query = mPostProvider.getAll();
+
+        FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
+                .setQuery(query, Post.class)
+                .build();
+        mPostAdapter = new PostsAdapter(options, getContext());
+        mPostAdapter.notifyDataSetChanged();
+        mRecycleView.setAdapter(mPostAdapter);
+        mPostAdapter.startListening();
+    }
 }

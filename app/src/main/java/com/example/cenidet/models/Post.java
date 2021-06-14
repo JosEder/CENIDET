@@ -10,13 +10,19 @@ public class Post {
     private String idUser;
     private String category;
     private String tipocuenta;
+    private Boolean isforAdministrative;
+    private Boolean isforTeacher;
+    private Boolean isforStudent;
+    private Boolean isforExternal;
     private long timestamp;
 
     public Post(){
 
     }
 
-    public Post(String id, String title, String description, String image1, String image2, String idUser, String category, String tipocuenta, long timestamp) {
+    public Post(String id, String title, String description, String image1, String image2, String idUser, String category, String tipocuenta,
+                Boolean isforAdministrative, Boolean isforTeacher, Boolean isforStudent, Boolean isforExternal,
+                long timestamp) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -25,6 +31,10 @@ public class Post {
         this.idUser = idUser;
         this.category = category;
         this.tipocuenta = tipocuenta;
+        this.isforAdministrative = isforAdministrative;
+        this.isforTeacher = isforTeacher;
+        this.isforStudent = isforStudent;
+        this.isforExternal = isforExternal;
         this.timestamp = timestamp;
     }
 
@@ -87,7 +97,39 @@ public class Post {
     public long getTimestamp() {
         return timestamp;
     }
+    //*** metodos nuevos inicio
+    public Boolean getIsforAdministrative() {
+        return isforAdministrative;
+    }
 
+    public void setIsforAdministrative(Boolean isforAdministrative) {
+        this.isforAdministrative = isforAdministrative;
+    }
+
+    public Boolean getIsforTeacher() {
+        return isforTeacher;
+    }
+
+    public void setIsforTeacher(Boolean isforTeacher) {
+        this.isforTeacher = isforTeacher;
+    }
+
+    public Boolean getIsforStudent() {
+        return isforStudent;
+    }
+
+    public void setIsforStudent(Boolean isforStudent) {
+        this.isforStudent = isforStudent;
+    }
+
+    public Boolean getIsforExternal() {
+        return isforExternal;
+    }
+
+    public void setIsforExternal(Boolean isforExternal) {
+        this.isforExternal = isforExternal;
+    }
+    //metodos nuevos fin
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
