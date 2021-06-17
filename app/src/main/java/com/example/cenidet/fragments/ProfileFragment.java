@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.cenidet.R;
 import com.example.cenidet.activities.EditProfileActivity;
 import com.example.cenidet.adapters.MyPostsAdapter;
+import com.example.cenidet.adapters.PostsAdapter;
 import com.example.cenidet.models.Post;
 import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.PostProvider;
@@ -41,8 +42,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
-
-
     View mView;
     LinearLayout mLinearLayoutEditProfile;
     LinearLayout mLineerLayoutTextPulicaciones;
@@ -143,29 +142,25 @@ public class ProfileFragment extends Fragment {
        getUser();
        getPosNumber();
        checkIfExistPost();
-        tipoCuenta();
-
-        if(mAuthProvider.getUid().equals("RquMZZgQ3FXmRByHSh6fJx4jO8e2")){
-            mLineerLayoutTextPulicaciones.setVisibility(View.VISIBLE);
-            mLineerLayoutCantidadDePublicaciones.setVisibility(View.VISIBLE);
-            mTextViewTipoCuenta.setText("ADMINISTRADOR");
-        }else{
-
-        }
+       tipoCuenta();
 
         return mView;
     }
 
     private void tipoCuenta() {
-
         mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()) {
                     if (documentSnapshot.contains("tipocuenta")) {
                         String tipocuenta = documentSnapshot.getString("tipocuenta");
-                            mTextViewTipoCuenta.setText(tipocuenta);
+                        mTextViewTipoCuenta.setText(tipocuenta);
 
+                        //Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        if(tipocuenta.equals("ADMINISTRADOR")){
+                            mLineerLayoutTextPulicaciones.setVisibility(View.VISIBLE);
+                            mLineerLayoutCantidadDePublicaciones.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
@@ -193,8 +188,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        Query query = mPostProvider.getPostByUser(mAuthProvider.getUid());
+        Query query = mPostProvider.getPostByUserandTimestamp(mAuthProvider.getUid());
         FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
                 .setQuery(query, Post.class)
                 .build();

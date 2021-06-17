@@ -122,8 +122,6 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
 
         mSearchBar.setOnSearchActionListener(this);
 
-        getUser();
-
         //mSearchBar.inflateMenu(R.menu.main_menu);
 
         /*mSearchBar.getMenu().setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -149,27 +147,24 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
             }
         });*/
 
-
-        //Esta condicion determina de manera fija si es el ID del administrador para realizar publicaciones.
-        if(mAuthProvider.getUid().equals("RquMZZgQ3FXmRByHSh6fJx4jO8e2")){
-            mFab.setVisibility(View.VISIBLE);
-            //Toast.makeText(getActivity(),"Todo bien", Toast.LENGTH_LONG).show();
-            mFab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    goToPost();
-                }
-            });
-        }else{
-
-        }
-
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPost();
+            }
+        });
 
         return mView;
     }
 
     private void searchByTitle(String title){
-        Query query = mPostProvider.getPostByTitle(title);
+        //Toast.makeText(getActivity(), "Titulo" + title + "Tipo de cuenta: " + mTipoCuenta, Toast.LENGTH_SHORT).show();
+        Query query = null;
+        if(mTipoCuenta.equals("ADMINISTRADOR")){
+            query = mPostProvider.getPostByTitle(title);
+        }else{
+            query = mPostProvider.getPostByTitleTipocuenta(mTipoCuenta,title);
+        }
         FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
                 .setQuery(query, Post.class)
                 .build();
@@ -182,6 +177,7 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     @Override
     public void onStart() {
         super.onStart();
+        getUser();
     }
 
     @Override
@@ -209,7 +205,8 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     @Override
     public void onSearchStateChanged(boolean enabled) {
         if(!enabled){
-            getAllPost();
+            //getAllPost();
+            getUser();
         }
     }
 
@@ -229,9 +226,10 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
                 if (documentSnapshot.exists()){
                     if(documentSnapshot.contains("tipocuenta")){
                         mTipoCuenta = documentSnapshot.getString("tipocuenta");
-                        Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
                         if(mTipoCuenta.equals("ADMINISTRADOR")){
                             //Toast.makeText(getActivity(), "Tipo de cuenta: " + mTipoCuenta, Toast.LENGTH_SHORT).show();
+                            mFab.show();
                             Query query = mPostProvider.getAll();
 
                             FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()

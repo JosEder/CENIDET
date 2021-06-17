@@ -13,9 +13,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.activities.FiltersActivity;
+import com.example.cenidet.providers.AuthProvider;
+import com.example.cenidet.providers.UsersProvider;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +42,20 @@ public class FiltersFragment extends Fragment {
     CardView mCardViewDireccion;
     Button mButtonBuscar;
     String mCategoria;
+
+    AuthProvider mAuthProvider;
+    UsersProvider mUsersProvider;
+    String mTipoCuenta;
+    ArrayAdapter adapter;
+    Spinner spinner;
+
+    String[] data1 = {"Dep. de Ingenieria Electronica", "Dep. de Ingenieria Mecanica", "Dep. de Ciencias Computacionales", "Dep. de Dess. Academico e Idiomas",
+            "Dep. de Org. y Seguimiento de Estudios", "Oficina de Centro de Com. y Telec.", "Centro de Informacion", "Dep. de Plan., Prog. y Presupestacion.",
+            "Dep. de Gest. Tecn. y Vinculacion", "Dep. de Comunicacion y Eventos", "Dep. de Servicios Escolares", "Dep. de Recursos Materiales y Servicios",
+            "Dep. de Recursos Humanos", "Dep. de Recursos Financieros"};
+
+    String[] data2 = {"Dep. de Ingenieria Electronica", "Dep. de Ingenieria Mecanica", "Dep. de Ciencias Computacionales", "Dep. de Dess. Academico e Idiomas",
+            "Dep. de Org. y Seguimiento de Estudios", "Dep. de Gest. Tecn. y Vinculacion", "Dep. de Servicios Escolares"};
 
     public FiltersFragment() {
         // Required empty public constructor
@@ -75,45 +94,65 @@ public class FiltersFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_filters, container, false);
         mButtonBuscar = mView.findViewById(R.id.btnBuscar);
+        mAuthProvider = new AuthProvider();
+        mUsersProvider = new UsersProvider();
 
+        getUser();
 
-        String[] data = {"Dep. de Ingenieria Electronica", "Dep. de Ingenieria Mecanica", "Dep. de Ciencias Computacionales", "Dep. de Dess. Academico e Idiomas",
-                "Dep. de Org. y Seguimiento de Estudios", "Oficina de Centro de Com. y Telec.", "Centro de Informacion", "Dep. de Plan., Prog. y Presupestacion.",
-                "Dep. de Gest. Tecn. y Vinculacion", "Dep. de Comunicacion y Eventos", "Dep. de Servicios Escolares", "Dep. de Recursos Materiales y Servicios",
-                "Dep. de Recursos Humanos", "Dep. de Recursos Financieros"};
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_selected, data);
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_selected, data1);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
-        final Spinner spinner =  mView.findViewById(R.id.spinner);
+        spinner =  mView.findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
 
-       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               mCategoria = spinner.getSelectedItem().toString();
-           }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mCategoria = spinner.getSelectedItem().toString();
+            }
 
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-           }
-       });
+            }
+        });
 
         mButtonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToFilterActivity(mCategoria);
+                goToFilterActivity(mCategoria, mTipoCuenta);
             }
         });
 
         return mView;
     }
 
-    private void goToFilterActivity(String category){
+    private void goToFilterActivity(String category, String tipocuenta){
         Intent intent = new Intent(getContext(), FiltersActivity.class);
         intent.putExtra("category", category);
+        intent.putExtra("tipocuenta", tipocuenta);
         startActivity(intent);
+    }
 
+    private void getUser(){
+        mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    if(documentSnapshot.contains("tipocuenta")){
+                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                        Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        if(mTipoCuenta.equals("Externo")){
+                            Toast.makeText(getActivity(), "Es: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                            adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_selected, data2);
+                            adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+                            spinner =  mView.findViewById(R.id.spinner);
+                            spinner.setAdapter(adapter);
+                        }
+                    }
+                }
+            }
+        });
     }
 }

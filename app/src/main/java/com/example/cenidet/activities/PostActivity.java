@@ -168,7 +168,6 @@ public class PostActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -302,7 +301,7 @@ public class PostActivity extends AppCompatActivity {
                                                     public void onComplete(@NonNull Task<Void> tasksave) {
                                                         mDialogo.dismiss();
                                                         if (tasksave.isSuccessful()){
-                                                            clearform();
+                                                            finish();
                                                             Toast.makeText(PostActivity.this, "La informacion se almaceno correctamente", Toast.LENGTH_LONG).show();
                                                         }else{
                                                             Toast.makeText(PostActivity.this, "No se pudo almacenar la informacion", Toast.LENGTH_LONG).show();
@@ -329,20 +328,6 @@ public class PostActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void clearform() {
-
-        mTextInputTitle.setText("");
-        mTextInputDescription.setText("");
-        mTextViewCategory.setText("");
-        mImageViewPost1.setImageResource(R.drawable.anadir);
-        mImageViewPost2.setImageResource(R.drawable.camara);
-        mTitle="";
-        mDescription="";
-        mCategory="";
-        mImageFile=null;
-        mImageFile2=null;
     }
 
     private void openGallery(int requestCode) {

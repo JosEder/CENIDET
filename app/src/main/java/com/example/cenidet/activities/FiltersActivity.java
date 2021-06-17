@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.adapters.PostsAdapter;
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.Query;
 public class FiltersActivity extends AppCompatActivity {
 
     String mExtraCategory;
+    String mExtraTipocuenta;
 
     AuthProvider mAuthProvider;
     RecyclerView mRecyclerView;
@@ -46,11 +48,10 @@ public class FiltersActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new GridLayoutManager(FiltersActivity.this,2));
 
         mExtraCategory = getIntent().getStringExtra("category");
+        mExtraTipocuenta = getIntent().getStringExtra("tipocuenta");
 
         mAuthProvider = new AuthProvider();
         mPostProvider = new PostProvider();
-
-
 
     }
 
@@ -58,17 +59,47 @@ public class FiltersActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Query query = mPostProvider.getPostByCategoryAndTimeStamp(mExtraCategory);
-        FirestoreRecyclerOptions<Post> options =
-                new FirestoreRecyclerOptions.Builder<Post>()
-                        .setQuery(query, Post.class)
-                        .build();
-        mPostsAdapter = new PostsAdapter(options, FiltersActivity.this, mTextViewNumberFilter);
-        mRecyclerView.setAdapter(mPostsAdapter);
-        mPostsAdapter.startListening();
+        Toast.makeText(getApplicationContext(), "Departamento: " + mExtraCategory + " Usuario: " + mExtraTipocuenta, Toast.LENGTH_LONG).show();
+        if(mExtraTipocuenta.equals("ADMINISTRADOR")){
+            Toast.makeText(getApplicationContext(), "Usuario: " + mExtraTipocuenta, Toast.LENGTH_LONG).show();
+            Query query = mPostProvider.getPostByCategoryAndTimeStamp(mExtraCategory);
+            FirestoreRecyclerOptions<Post> options =
+                    new FirestoreRecyclerOptions.Builder<Post>()
+                            .setQuery(query, Post.class)
+                            .build();
+            mPostsAdapter = new PostsAdapter(options, FiltersActivity.this, mTextViewNumberFilter);
+            mRecyclerView.setAdapter(mPostsAdapter);
+            mPostsAdapter.startListening();
 
-        ViewedMessageHelper.upDateOnline(true, FiltersActivity.this);
+            ViewedMessageHelper.upDateOnline(true, FiltersActivity.this);
+        }else{
+            switch(mExtraTipocuenta){
+                case "Administrativo":
+                    mExtraTipocuenta = "isforAdministrative";
+                    break;
+                case "Docente":
+                    mExtraTipocuenta = "isforTeacher";
+                    break;
+                case "Estudiante":
+                    mExtraTipocuenta = "isforStudent";
+                    break;
+                case "Externo":
+                    mExtraTipocuenta = "isforExternal";
+                    break;
+            }
+            Query query = mPostProvider.getPostByCategoryAndTipocuenta(mExtraCategory, mExtraTipocuenta);
 
+            //Query query = mPostProvider.getPostByCategoryAndTimeStamp(mExtraCategory);
+            FirestoreRecyclerOptions<Post> options =
+                    new FirestoreRecyclerOptions.Builder<Post>()
+                            .setQuery(query, Post.class)
+                            .build();
+            mPostsAdapter = new PostsAdapter(options, FiltersActivity.this, mTextViewNumberFilter);
+            mRecyclerView.setAdapter(mPostsAdapter);
+            mPostsAdapter.startListening();
+
+            ViewedMessageHelper.upDateOnline(true, FiltersActivity.this);
+        }
     }
 
     @Override

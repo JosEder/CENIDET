@@ -1,3 +1,4 @@
+
 package com.example.cenidet.providers;
 
 import android.widget.Toast;
@@ -34,7 +35,10 @@ public class PostProvider {
     }
 
     public Query getPostByUser(String id){
-        return mCollection.whereEqualTo("idUser", id) ;
+        return mCollection.whereEqualTo("idUser", id);
+    }
+    public Query getPostByUserandTimestamp(String id){
+        return mCollection.whereEqualTo("idUser", id).orderBy("timestamp", Query.Direction.DESCENDING);
     }
 
     public Task<DocumentSnapshot> getPostById(String id){
@@ -49,7 +53,11 @@ public class PostProvider {
         return mCollection.whereEqualTo(tipocuenta, true).orderBy("timestamp", Query.Direction.DESCENDING);
     }
 
-    public Query getPostCollection(){
-        return mCollection.orderBy("timestamp", Query.Direction.DESCENDING);
+    public Query getPostByCategoryAndTipocuenta(String category, String tipocuenta){
+        return mCollection.whereEqualTo("category", category).whereEqualTo(tipocuenta, true).orderBy("timestamp", Query.Direction.DESCENDING);
+    }
+
+    public Query getPostByTitleTipocuenta(String tipocuenta, String title){
+        return mCollection.whereEqualTo(tipocuenta, true).orderBy("title").startAt(title).endAt(title+'\uf8ff');
     }
 }

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,13 +42,16 @@ public class ChatFragment extends Fragment {
     View mView;
     CardView mCardViewEmailAdminitrador;
     CardView mCardViewEmailNuevo;
+    CardView mCardViewSolicitudCostancia;
+    CardView mCardViewSolicitudServicioTecnico;
     TextView mTextViewSolicitud;
     TextView mTextViewNuevo;
+    TextView mTextViewSolicitudServicioTecnico;
+    TextView mTextViewSolicitudCostancia;
     String tituloCorreo = "";
 
     AuthProvider mAuthProvider;
     UsersProvider mUsersProvider;
-    LinearLayout mLLSolicitudExpediente;
     String mTipoCuenta;
 
     public ChatFragment() {
@@ -88,9 +92,10 @@ public class ChatFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_chat, container, false);
         mCardViewEmailAdminitrador = mView.findViewById(R.id.cardViewEmailAdministrador);
         mCardViewEmailNuevo = mView.findViewById(R.id.cardViewEmailBlanco);
+        mCardViewSolicitudCostancia = mView.findViewById(R.id.cardViewSolicitudConstancia);
+        mCardViewSolicitudServicioTecnico = mView.findViewById(R.id.cardViewSolicitudServicioTecnico);
         mTextViewSolicitud = mView.findViewById(R.id.textViewSolicitud);
         mTextViewNuevo = mView.findViewById(R.id.textViewNuevo);
-        mLLSolicitudExpediente = mView.findViewById(R.id.linearLayoutSolicitudExpediente);
 
         mAuthProvider = new AuthProvider();
         mUsersProvider = new UsersProvider();
@@ -112,7 +117,6 @@ public class ChatFragment extends Fragment {
                     String tituloCorreo = mTextViewNuevo.getText().toString();
                     intent.putExtra("variable_TipoCorreo", tituloCorreo);
                     //Toast.makeText(getContext(), "Prueba "+tituloCorreo, Toast.LENGTH_LONG).show();
-
                     startActivity(intent);
                 }
             });
@@ -130,11 +134,23 @@ public class ChatFragment extends Fragment {
                 if (documentSnapshot.exists()){
                     if(documentSnapshot.contains("tipocuenta")){
                         mTipoCuenta = documentSnapshot.getString("tipocuenta");
-                        //Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
-                        if(mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")||mTipoCuenta.equals("Externo")){
-                            mLLSolicitudExpediente.setVisibility(View.GONE);
-                            mLLSolicitudExpediente.setEnabled(false);
+                        if(mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")){
                             mCardViewEmailAdminitrador.setEnabled(false);
+                            mCardViewEmailAdminitrador.setVisibility(View.GONE);
+                            mCardViewSolicitudCostancia.setEnabled(false);
+                            mCardViewSolicitudCostancia.setVisibility(View.GONE);
+                        }
+                        if(mTipoCuenta.equals("Estudiante")){
+                            mCardViewSolicitudServicioTecnico.setEnabled(false);
+                            mCardViewSolicitudServicioTecnico.setVisibility(View.GONE);
+                        }
+                        if(mTipoCuenta.equals("Externo")){
+                            mCardViewEmailAdminitrador.setEnabled(false);
+                            mCardViewEmailAdminitrador.setVisibility(View.GONE);
+                            mCardViewSolicitudCostancia.setEnabled(false);
+                            mCardViewSolicitudCostancia.setVisibility(View.GONE);
+                            mCardViewSolicitudServicioTecnico.setEnabled(false);
+                            mCardViewSolicitudServicioTecnico.setVisibility(View.GONE);
                         }
                     }
                 }
