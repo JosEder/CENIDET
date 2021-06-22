@@ -124,7 +124,7 @@ public class ChatActivity extends AppCompatActivity {
                                                     if(mSpinner4.getSelectedItem().toString().equalsIgnoreCase("Centro de Informacion")){
                                                         mEditTextRecipient.setText("ci_cenidet@tecnm.mx");
                                                     }else{
-                                                        if(mSpinner4.getSelectedItem().toString().equalsIgnoreCase("Dep. de Plan., Prog. y Presupestacion.")){
+                                                        if(mSpinner4.getSelectedItem().toString().equalsIgnoreCase("Dep. de Plan., Prog. y Presupestacion")){
                                                             mEditTextRecipient.setText("pl_cenidet@tecnm.mx");
                                                         }else{
                                                             if(mSpinner4.getSelectedItem().toString().equalsIgnoreCase("Dep. de Gest. Tecn. y Vinculacion")){
@@ -241,6 +241,7 @@ public class ChatActivity extends AppCompatActivity {
                         if(mTipoCuenta.equals("Externo")){
                             //Toast.makeText(getApplicationContext(), "Todo bien", Toast.LENGTH_LONG).show();
                             adDepExterno = ArrayAdapter.createFromResource(ChatActivity.this, R.array.departamento_externos, android.R.layout.simple_spinner_item);
+                            adDepExterno.setDropDownViewResource(R.layout.spinner_dropdown_item);
                             mSpinner4.setAdapter(adDepExterno);
                         }
                     }

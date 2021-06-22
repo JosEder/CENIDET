@@ -59,9 +59,9 @@ public class FiltersActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getApplicationContext(), "Departamento: " + mExtraCategory + " Usuario: " + mExtraTipocuenta, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Departamento: " + mExtraCategory + " Usuario: " + mExtraTipocuenta, Toast.LENGTH_LONG).show();
         if(mExtraTipocuenta.equals("ADMINISTRADOR")){
-            Toast.makeText(getApplicationContext(), "Usuario: " + mExtraTipocuenta, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Usuario: " + mExtraTipocuenta, Toast.LENGTH_LONG).show();
             Query query = mPostProvider.getPostByCategoryAndTimeStamp(mExtraCategory);
             FirestoreRecyclerOptions<Post> options =
                     new FirestoreRecyclerOptions.Builder<Post>()

@@ -102,11 +102,16 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         mFab=mView.findViewById(R.id.fab);
         mRecycleView = mView.findViewById(R.id.recycleViewHome);
+        mSearchBar = mView.findViewById(R.id.searchBar);mView = inflater.inflate(R.layout.fragment_home, container, false);
+        mFab=mView.findViewById(R.id.fab);
+        mRecycleView = mView.findViewById(R.id.recycleViewHome);
         mSearchBar = mView.findViewById(R.id.searchBar);
+
+        setHasOptionsMenu(true);
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mRecycleView.setLayoutManager(linearLayoutManager);
@@ -240,6 +245,7 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
                             mRecycleView.setAdapter(mPostAdapter);
                             mPostAdapter.startListening();
                         }else{
+                            mFab.hide();
                             switch(mTipoCuenta){
                                 case "Administrativo":
                                     mTipoCuenta = "isforAdministrative";
@@ -269,17 +275,5 @@ public class HomeFragment extends Fragment  implements MaterialSearchBar.OnSearc
                 }
             }
         });
-    }
-
-    private void getAllPost(){
-        Query query = mPostProvider.getAll();
-
-        FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
-                .setQuery(query, Post.class)
-                .build();
-        mPostAdapter = new PostsAdapter(options, getContext());
-        mPostAdapter.notifyDataSetChanged();
-        mRecycleView.setAdapter(mPostAdapter);
-        mPostAdapter.startListening();
     }
 }

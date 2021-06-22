@@ -134,23 +134,33 @@ public class ChatFragment extends Fragment {
                 if (documentSnapshot.exists()){
                     if(documentSnapshot.contains("tipocuenta")){
                         mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                        if(mTipoCuenta.equals("ADMINISTRADOR")){
+                            mCardViewEmailNuevo.setEnabled(true);
+                            mCardViewEmailNuevo.setVisibility(View.VISIBLE);
+                            mCardViewEmailAdminitrador.setEnabled(true);
+                            mCardViewEmailAdminitrador.setVisibility(View.VISIBLE);
+                            mCardViewSolicitudCostancia.setEnabled(true);
+                            mCardViewSolicitudCostancia.setVisibility(View.VISIBLE);
+                            mCardViewSolicitudServicioTecnico.setEnabled(true);
+                            mCardViewSolicitudServicioTecnico.setVisibility(View.VISIBLE);
+                        }
                         if(mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")){
-                            mCardViewEmailAdminitrador.setEnabled(false);
-                            mCardViewEmailAdminitrador.setVisibility(View.GONE);
-                            mCardViewSolicitudCostancia.setEnabled(false);
-                            mCardViewSolicitudCostancia.setVisibility(View.GONE);
+                            mCardViewEmailNuevo.setEnabled(true);
+                            mCardViewEmailNuevo.setVisibility(View.VISIBLE);
+                            mCardViewSolicitudServicioTecnico.setEnabled(true);
+                            mCardViewSolicitudServicioTecnico.setVisibility(View.VISIBLE);
                         }
                         if(mTipoCuenta.equals("Estudiante")){
-                            mCardViewSolicitudServicioTecnico.setEnabled(false);
-                            mCardViewSolicitudServicioTecnico.setVisibility(View.GONE);
+                            mCardViewEmailNuevo.setEnabled(true);
+                            mCardViewEmailNuevo.setVisibility(View.VISIBLE);
+                            mCardViewEmailAdminitrador.setEnabled(true);
+                            mCardViewEmailAdminitrador.setVisibility(View.VISIBLE);
+                            mCardViewSolicitudCostancia.setEnabled(true);
+                            mCardViewSolicitudCostancia.setVisibility(View.VISIBLE);
                         }
                         if(mTipoCuenta.equals("Externo")){
-                            mCardViewEmailAdminitrador.setEnabled(false);
-                            mCardViewEmailAdminitrador.setVisibility(View.GONE);
-                            mCardViewSolicitudCostancia.setEnabled(false);
-                            mCardViewSolicitudCostancia.setVisibility(View.GONE);
-                            mCardViewSolicitudServicioTecnico.setEnabled(false);
-                            mCardViewSolicitudServicioTecnico.setVisibility(View.GONE);
+                            mCardViewEmailNuevo.setEnabled(true);
+                            mCardViewEmailNuevo.setVisibility(View.VISIBLE);
                         }
                     }
                 }

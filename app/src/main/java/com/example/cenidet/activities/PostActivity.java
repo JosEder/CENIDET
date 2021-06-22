@@ -145,12 +145,20 @@ public class PostActivity extends AppCompatActivity {
         });
 
 
-        String[] data = {//"Dep. de Ingenieria Electronica", "Dep. de Ingenieria Mecanica", "Dep. de Ciencias Computacionales", "Dep. de Dess. Academico e Idiomas",
-                        //"Dep. de Org. y Seguimiento de Estudios", "Oficina de Centro de Com. y Telec.", "Centro de Informacion", "Dep. de Plan., Prog. y Presupestacion.",
-                        //"Dep. de Gest. Tecn. y Vinculacion",
+        String[] data = {"Dep. de Ingenieria Electronica",
+                        "Dep. de Ingenieria Mecanica",
+                        "Dep. de Ciencias Computacionales",
+                        "Dep. de Des. Academico e Idiomas",
+                        "Dep. de Org. y Seguimiento de Estudios",
+                        "Oficina de Centro de Com. y Telec.",
+                        "Centro de Informacion",
+                        "Dep. de Plan., Prog. y Presupestacion.",
+                        "Dep. de Gest. Tecn. y Vinculacion",
                         "Dep. de Comunicacion y Eventos",
-                        //"Dep. de Servicios Escolares", "Dep. de Recursos Materiales y Servicios",
-                        //"Dep. de Recursos Humanos", "Dep. de Recursos Financieros"
+                        "Dep. de Servicios Escolares",
+                        "Dep. de Recursos Materiales y Servicios",
+                        "Dep. de Recursos Humanos",
+                        "Dep. de Recursos Financieros"
         };
 
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_selected, data);

@@ -94,6 +94,7 @@ public class FiltersFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_filters, container, false);
         mButtonBuscar = mView.findViewById(R.id.btnBuscar);
+        spinner =  mView.findViewById(R.id.spinner);
         mAuthProvider = new AuthProvider();
         mUsersProvider = new UsersProvider();
 
@@ -141,13 +142,11 @@ public class FiltersFragment extends Fragment {
                 if (documentSnapshot.exists()){
                     if(documentSnapshot.contains("tipocuenta")){
                         mTipoCuenta = documentSnapshot.getString("tipocuenta");
-                        Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
                         if(mTipoCuenta.equals("Externo")){
-                            Toast.makeText(getActivity(), "Es: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getActivity(), "Es: " + mTipoCuenta, Toast.LENGTH_LONG).show();
                             adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_selected, data2);
                             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-
-                            spinner =  mView.findViewById(R.id.spinner);
                             spinner.setAdapter(adapter);
                         }
                     }
