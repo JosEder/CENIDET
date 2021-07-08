@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,12 +30,14 @@ import com.example.cenidet.models.Post;
 import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.ImageProvider;
 import com.example.cenidet.providers.PostProvider;
+import com.example.cenidet.providers.UsersProvider;
 import com.example.cenidet.utils.FileUtil;
 import com.example.cenidet.utils.ViewedMessageHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
@@ -55,6 +58,7 @@ public class PostActivity extends AppCompatActivity {
     ImageProvider mImageProvider;
     PostProvider mPostProvider;
     AuthProvider mAuthProvider;
+    UsersProvider mUsersProvider;
     TextInputEditText mTextInputTitle;
     TextInputEditText mTextInputDescription;
     TextView mTextViewCategory;
@@ -62,6 +66,7 @@ public class PostActivity extends AppCompatActivity {
     String mCategory = "";
     String mTitle = "";
     String mDescription = "";
+    String mTipoCuenta = null;
     AlertDialog mDialogo;
 
     AlertDialog.Builder mBuilderSelector;
@@ -89,10 +94,12 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-
         mImageProvider = new ImageProvider();
         mPostProvider = new PostProvider();
         mAuthProvider = new AuthProvider();
+        mUsersProvider = new UsersProvider();
+
+        getUser();
 
         mDialogo = new SpotsDialog.Builder()
                 .setContext(this)
@@ -100,8 +107,8 @@ public class PostActivity extends AppCompatActivity {
                 .setCancelable(false).build();
 
         mBuilderSelector = new AlertDialog.Builder(this);
-        mBuilderSelector.setTitle("Seleciona una opcion");
-        options = new CharSequence[]{"Imagen de galeria", "Tomar foto"};
+        mBuilderSelector.setTitle("Seleciona una opción");
+        options = new CharSequence[]{"Imagen de galería", "Tomar foto"};
 
 
         mImageViewPost1 = findViewById(R.id.imageViewPost1);
@@ -310,9 +317,9 @@ public class PostActivity extends AppCompatActivity {
                                                         mDialogo.dismiss();
                                                         if (tasksave.isSuccessful()){
                                                             finish();
-                                                            Toast.makeText(PostActivity.this, "La informacion se almaceno correctamente", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(PostActivity.this, "La información se almaceno correctamente", Toast.LENGTH_LONG).show();
                                                         }else{
-                                                            Toast.makeText(PostActivity.this, "No se pudo almacenar la informacion", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(PostActivity.this, "No se pudo almacenar la información", Toast.LENGTH_LONG).show();
 
                                                         }
                                                     }
@@ -321,7 +328,7 @@ public class PostActivity extends AppCompatActivity {
                                         });
                                     }else{
                                         mDialogo.dismiss();
-                                        Toast.makeText(PostActivity.this, "La imagen numero 2 no de pudo guardar", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(PostActivity.this, "La imagen número 2 no se ha podido almacenar", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -332,7 +339,7 @@ public class PostActivity extends AppCompatActivity {
                 }
                 else {
                     mDialogo.dismiss();
-                    Toast.makeText(PostActivity.this, "Hubo un error al amacenar la imagen", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostActivity.this, "Hubo un error al almacenar la imagen", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -413,4 +420,22 @@ public class PostActivity extends AppCompatActivity {
             isforExternal = true;
         }
     }
+
+    private void getUser(){
+        mUsersProvider.getUser(mAuthProvider.getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    if(documentSnapshot.contains("tipocuenta")){
+                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
+                        //Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                        if(!mTipoCuenta.equals("ADMINISTRADOR")){
+                            finish();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
 }

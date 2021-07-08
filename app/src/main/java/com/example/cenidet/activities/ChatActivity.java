@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
 
         getUserTipocuenta();
 
-        recuperarTituloCorreo ="";
+        recuperarTituloCorreo = "";
         recuperarTitulo = getIntent().getStringExtra("variable_Titulo");
         recuperarTituloCorreo = getIntent().getStringExtra("variable_TipoCorreo");
 
@@ -78,16 +78,13 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        ;if(recuperarTituloCorreo != null){
-            mEditTextSubject.setText("");
-            mEditTextMessage.setText("");
-        }else {
-            if (recuperarTitulo == null) {
-                mEditTextSubject.setText("Informacion sobre:... (Desde la app)");
+        if (recuperarTitulo == null) {
+            mEditTextSubject.setText("Informacion sobre:... (Desde la app)");
+        } else {
+            mEditTextSubject.setText(recuperarTitulo + " (Desde la app)");
+            mEditTextSubject.setEnabled(false);
+            if(recuperarTituloCorreo != null){
                 getUser();
-            } else {
-                mEditTextSubject.setText(recuperarTitulo + " (Desde la app)");
-                mEditTextSubject.setEnabled(false);
             }
         }
 
@@ -217,15 +214,30 @@ public class ChatActivity extends AppCompatActivity {
                         String nombre2 = documentSnapshot.getString("username");
                         nombre = nombre2;
                     }
-                    mEditTextMessage.setText("A quien corresponda.\n" +
-                            "\n" +
-                            "Por medio del presente, solicito atentamente la revisión de mi expediente, pues deseo presentar mi examen de grado en próximas fechas."+"\n" +
-                            "\n" +
-                            "Agradezco de antemano la atención al presente." +
-                            "\n" + "\n" +
-                            "Nombre: "+ nombre + "\n" +
-                            "Matrícula: "+ matricula );
+                    if(recuperarTitulo.equals("Solicitud de Constancia")){
+                        Toast.makeText(getApplicationContext(), "Por favor agregue la información necesaria para el tipo de constancia", Toast.LENGTH_LONG).show();
+                        mEditTextMessage.setText("A quien corresponda.\n" +
+                                "\n" +
+                                "Por medio del presente, solicito atentamente la emisión de constancia (Expecificar el tipo de constancia)"+"\n" +
+                                "Nombre: "+ nombre + "\n" +
+                                "Matrícula: "+ matricula +  "\n" +
+                                "Departamento: " +  "\n" +
+                                "Generacion: " +  "\n" +
+                                "\n" +
+                                "Agradezco de antemano la atención al presente." +
+                                "\n" + "\n");
 
+                    }
+                    if(recuperarTitulo.equals("Solicitud de Revisión de Expediente")){
+                        mEditTextMessage.setText("A quien corresponda.\n" +
+                                "\n" +
+                                "Por medio del presente, solicito atentamente la revisión de mi expediente, pues deseo presentar mi examen de grado en próximas fechas."+"\n" +
+                                "\n" +
+                                "Agradezco de antemano la atención al presente." +
+                                "\n" + "\n" +
+                                "Nombre: "+ nombre + "\n" +
+                                "Matrícula: "+ matricula );
+                    }
                 }
             }
         });

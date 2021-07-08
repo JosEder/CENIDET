@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CENIDET</string>
-    <string name="registrate_ahora">REGISTRATE AHORA</string>
-    <string name="registrate">REGISTRATE</string>
+    <string name="registrate_ahora">REGÍSTRATE AHORA</string>
+    <string name="registrate">REGÍSTRATE</string>
     <string name="todo">TODO</string>
     <string name="correo_electronico">Correo Electrónico</string>
     <string name="contrase_a">Contraseña</string>
@@ -11,9 +11,9 @@
     <string name="registrarse">REGISTRARSE</string>
     <string name="no_tienes_cuenta">¿No tienes cuenta?</string>
     <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
-    <string name="registrate_aqui">REGISTRATE AQUI!!!</string>
-    <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="completa">COMPLETA INFORMACION</string>
+    <string name="registrate_aqui">REGÍSTRATE AQUÍ!!!</string>
+    <string name="iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="completa">COMPLETA INFORMACIÓN</string>
     <string name="perfil">DE PERFIL</string>
     <string name="confirmar">CONFIRMAR</string>
     <string name="transicion_picture">transicionnamepicture</string>
@@ -28,12 +28,6 @@
         <item>Estudiante</item>
         <item>Docente</item>
         <item>Administrativo</item>
-    </string-array>
-
-    <string-array name="UID_Admins">
-        <item>mbf5S4Kq1LYp0XrtMgyqiXVFcih1</item>
-        <item>RquMZZgQ3FXmRByHSh6fJx4jO8e2</item>
-        <item>9yroFHIs1nSVxfI5O71bwTtWFZH3</item>
     </string-array>
 
     //Aqui se puede modificar para todos las listas

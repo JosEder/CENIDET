@@ -25,7 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="CREAR PUBLICACION"
+                    android:text="CREAR PUBLICACIÓN"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp" />
@@ -98,7 +98,7 @@
                         android:id="@+id/textInputTitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Titulo de la publicacion"
+                        android:hint="Título de la publicación"
                         android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -129,7 +129,7 @@
                         android:id="@+id/textInputDescripcion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Descripcion"
+                        android:hint="Descripción"
                         android:inputType="textMultiLine"
                         android:maxLines="4"/>
 

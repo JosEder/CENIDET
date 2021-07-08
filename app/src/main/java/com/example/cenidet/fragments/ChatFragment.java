@@ -44,7 +44,7 @@ public class ChatFragment extends Fragment {
     CardView mCardViewEmailNuevo;
     CardView mCardViewSolicitudCostancia;
     CardView mCardViewSolicitudServicioTecnico;
-    TextView mTextViewSolicitud;
+    TextView mTextViewSolicitudExpediente;
     TextView mTextViewNuevo;
     TextView mTextViewSolicitudServicioTecnico;
     TextView mTextViewSolicitudCostancia;
@@ -94,30 +94,54 @@ public class ChatFragment extends Fragment {
         mCardViewEmailNuevo = mView.findViewById(R.id.cardViewEmailBlanco);
         mCardViewSolicitudCostancia = mView.findViewById(R.id.cardViewSolicitudConstancia);
         mCardViewSolicitudServicioTecnico = mView.findViewById(R.id.cardViewSolicitudServicioTecnico);
-        mTextViewSolicitud = mView.findViewById(R.id.textViewSolicitud);
+        mTextViewSolicitudExpediente = mView.findViewById(R.id.textViewSolicitudExpediente);
         mTextViewNuevo = mView.findViewById(R.id.textViewNuevo);
+        mTextViewSolicitudCostancia = mView.findViewById(R.id.textViewSolicitudConstancia);
+        mTextViewSolicitudServicioTecnico = mView.findViewById(R.id.textViewSolicitudServicioTecnico);
+
 
         mAuthProvider = new AuthProvider();
         mUsersProvider = new UsersProvider();
         getUser();
 
         try{
-            mCardViewEmailAdminitrador.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), ChatActivity.class);
-                    startActivity(intent);
-                }
-            });
-
             mCardViewEmailNuevo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getContext(), ChatActivity.class);
                     String tituloCorreo = mTextViewNuevo.getText().toString();
                     intent.putExtra("variable_TipoCorreo", tituloCorreo);
-                    //Toast.makeText(getContext(), "Prueba "+tituloCorreo, Toast.LENGTH_LONG).show();
                     startActivity(intent);
+                }
+            });
+
+            mCardViewSolicitudCostancia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String tituloCorreo = mTextViewSolicitudCostancia.getText().toString();
+                    //Toast.makeText(getContext(), "Prueba "+ tituloCorreo, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    intent.putExtra("variable_Titulo", "Solicitud de Constancia");
+                    intent.putExtra("variable_TipoCorreo", tituloCorreo);
+                    startActivity(intent);
+                }
+            });
+
+            mCardViewEmailAdminitrador.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String tituloCorreo = mTextViewSolicitudExpediente.getText().toString();
+                    Intent intent = new Intent(getContext(), ChatActivity.class);
+                    intent.putExtra("variable_Titulo", "Solicitud de Revisión de Expediente");
+                    intent.putExtra("variable_TipoCorreo", tituloCorreo);
+                    startActivity(intent);
+                }
+            });
+
+            mCardViewSolicitudServicioTecnico.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(),"En desarrollo", Toast.LENGTH_LONG).show();
                 }
             });
         }catch (Exception e){
