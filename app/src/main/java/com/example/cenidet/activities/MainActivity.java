@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         mDialog.show();
         if(email.isEmpty()||password.isEmpty()){
             mDialog.dismiss();
-            Toast.makeText(MainActivity.this, "El email o la contraseña estan vacias", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "El correo electrónico o la contraseña estan vacias", Toast.LENGTH_LONG).show();
         }else{
             mAuthPovider.login(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -219,11 +219,11 @@ public class MainActivity extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(MainActivity.this, "Por favor verifique su correo", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Por favor verifique su correo electrónico", Toast.LENGTH_LONG).show();
                         }
                     }
                     else {
-                        Toast.makeText(MainActivity.this, "El email o la contraseña que ingresaste no son correctas", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "El correo electrónico o la contraseña que ingreso no son correctas", Toast.LENGTH_LONG).show();
                     }
                 }
             });

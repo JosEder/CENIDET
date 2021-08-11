@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.cenidet.R;
 import com.example.cenidet.activities.ChatActivity;
+import com.example.cenidet.activities.ConvocatoriaActivity;
+import com.example.cenidet.activities.ServicioTecnicoActivity;
 import com.example.cenidet.providers.AuthProvider;
 import com.example.cenidet.providers.UsersProvider;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -142,6 +144,8 @@ public class ChatFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getContext(),"En desarrollo", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), ServicioTecnicoActivity.class);
+                    startActivity(intent);
                 }
             });
         }catch (Exception e){

@@ -269,11 +269,11 @@ public class PostActivity extends AppCompatActivity {
                 saveImage(mPhotoFile, mImageFile2);
             }
             else {
-                Toast.makeText(PostActivity.this, "Debes selecionar una imagen", Toast.LENGTH_LONG).show();
+                Toast.makeText(PostActivity.this, "Debe seleccionar dos imágenes", Toast.LENGTH_LONG).show();
 
             }
         }else {
-            Toast.makeText(PostActivity.this, "Completa los campos para publicar", Toast.LENGTH_LONG).show();
+            Toast.makeText(PostActivity.this, "Complete los campos para publicar", Toast.LENGTH_LONG).show();
         }
     }
 

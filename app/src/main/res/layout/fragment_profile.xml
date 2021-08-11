@@ -184,13 +184,13 @@
                 android:id="@+id/textViewPostExist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No hay publicaicones"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="No hay publicaciones"
                 android:textSize="18dp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleViewMyPost"

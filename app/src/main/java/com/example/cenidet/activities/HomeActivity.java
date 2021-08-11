@@ -220,7 +220,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                if (documentSnapshot.exists()){
                    if(documentSnapshot.contains("tipocuenta")){
                        mTipoCuenta = documentSnapshot.getString("tipocuenta");
-                       //ww Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
+                       //Toast.makeText(getApplicationContext(), "Usuario: " + mTipoCuenta, Toast.LENGTH_LONG).show();
                        if(mTipoCuenta.equals("ADMINISTRADOR")||mTipoCuenta.equals("Administrativo")||mTipoCuenta.equals("Docente")||mTipoCuenta.equals("Estudiante")){
                            menu = navigationView.getMenu();
                            MenuItem ItemConvocatoria = menu.findItem(R.id.nav_convocatoria);

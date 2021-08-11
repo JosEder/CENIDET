@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                     //mostrarToast("Error\nLas contraseñas no coinciden");
                 }
             }else{
-                Toast.makeText(this, "Has insertado todos los campos pero el correo no es valido", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Has insertado todos los campos, pero el correo electrónico no es válido", Toast.LENGTH_LONG).show();
                 //mostrarToast("Correo electrónico no valido");
             }
         }else{
@@ -198,8 +198,8 @@ public class RegisterActivity extends AppCompatActivity {
         VERIFICAR QUE SEA UN EMAIL VALIDO
      */
     public boolean isEmailValid(String email) {
-        String expression = "^[\\w\\.-]+@cenidet.tecnm.mx";
-        //String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        //String expression = "^[\\w\\.-]+@cenidet.tecnm.mx";
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
